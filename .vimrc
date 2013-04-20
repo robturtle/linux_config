@@ -33,6 +33,8 @@
 """""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""
+" Set utf8 as standard encoding and en_US as the standard language
+set encoding=utf8
 " Sets how many lines of history VIM has to remember
 set history=700
 " Enable filetype plugins
@@ -64,8 +66,6 @@ if has("win16") || has("win32")
 	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
 	set wildignore+=.git\*,.hg\*,.svn\*
-	" Set utf8 as standard encoding and en_US as the standard language
-	set encoding=utf8
 endif
 
 "Always show current position
@@ -475,7 +475,8 @@ Bundle 'tpope/vim-rails.git'
 Bundle 'mbbill/code_complete'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'laoyang945/vimflowy'
-Bundle 'robturtle/md-vim.git'
+"Bundle 'robturtle/md-vim.git'
+Bundle 'robturtle/vim-pandoc'
 "Bundle 'Rip-Rip/clang_complete'
 "Bundle 'scrooloose/syntastic'
 " vim-scripts repos
@@ -487,7 +488,7 @@ Bundle 'a.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 " c/c++ programming completer
-Bundle 'Valloric/YouCompleteMe'
+"Bundle 'Valloric/YouCompleteMe'
 "Bundle 'win-manager-improved'
 
 filetype plugin indent on " required
