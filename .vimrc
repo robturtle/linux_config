@@ -64,6 +64,8 @@ if has("win16") || has("win32")
 	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
 	set wildignore+=.git\*,.hg\*,.svn\*
+	" Set utf8 as standard encoding and en_US as the standard language
+	set encoding=utf8
 endif
 
 "Always show current position
@@ -116,9 +118,6 @@ if has("gui_running")
 	set t_Co=256
 	set guitablabel=%M\ %t
 endif
-
-" Set utf8 as standard encoding and en_US as the standard language
-set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
