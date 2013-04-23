@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/54/Yang/Templates
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/4/Yang/Templates/CMakeLists.txt
+END
+中文模板03.dot
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/4/Yang/Templates/%E4%B8%AD%E6%96%87%E6%A8%A1%E6%9D%BF03.dot
+END
+test_main.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/54/Yang/Templates/test_main.cpp
+END
+.ycm_extra_conf.py
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/54/Yang/Templates/.ycm_extra_conf.py
+END
+Makefile_template
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/4/Yang/Templates/Makefile_template
+END
+中文模板.dotx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/4/Yang/Templates/%E4%B8%AD%E6%96%87%E6%A8%A1%E6%9D%BF.dotx
+END

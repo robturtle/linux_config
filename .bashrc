@@ -113,7 +113,7 @@ fi
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
-    PATH="$HOME/bin:$PATH"
+    PATH="$HOME/.cabal/bin:$HOME/bin:$PATH"
 fi
 
 export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig

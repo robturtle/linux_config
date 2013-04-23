@@ -488,7 +488,7 @@ Bundle 'a.vim'
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
 " c/c++ programming completer
-"Bundle 'Valloric/YouCompleteMe'
+Bundle 'Valloric/YouCompleteMe'
 "Bundle 'win-manager-improved'
 
 filetype plugin indent on " required
