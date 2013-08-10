@@ -7,6 +7,6 @@ if [ "echo $LANG|grep ^zh_CN" != "" ];then
     export LANG=zh_CN.gb2312                
 fi 
 
-"/usr/iNodeClient/.iNode/iNodeClient" &
+"$HOME/bin/iNodeClient/iNodeClient.sh" &
 
 

@@ -8,4 +8,9 @@ fi
 
 cp ~/bin/bash_template.txt "$filename.sh"
 chmod +x "$filename.sh"
-exit 0
+file="$filename.sh"
+echo "# Filename: ${1}.sh"    >> "$file"
+echo "# Author:   LIU Yang"   >> "$file"
+echo "# Create Time: $(date)" >> "$file"
+echo "# License:     LGPL v2.0+"  >> "$file"
+echo "# Contact Me:  JeremyRobturtle@gmail.com" >> "$file"
