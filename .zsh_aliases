@@ -1,9 +1,6 @@
 # Common used
 alias o="xdg-open"
 
-# Change directory
-alias gigo="pushd ~/gigo"
-
 # l10n support
 alias unzip="unzip -O CP936"
 
