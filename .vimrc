@@ -176,8 +176,6 @@ map j gj
 map k gk
 " Disable hightlight when <leader><cr> is pressed
 map <silent> <leader><cr> :noh<cr>
-" Map <space> to do shell cmd
-map <space> :!
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -466,12 +464,13 @@ Bundle 'robturtle/vim-pandoc'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'robturtle/zencoding-vim'
 Bundle 'robturtle/vim-syntax'
-Bundle 'robturtle/UltiSnips'
 Bundle 'scrooloose/syntastic'
 Bundle 'Valloric/ListToggle'
 Bundle 'vimim/vimim'
 
 " vim-scripts repos
+Bundle 'UltiSnips'
+Bundle 'robturtle/USsnippets'
 Bundle 'winmanager'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
