@@ -4,4 +4,4 @@ test -e CMakeLists.txt || exit 1
 
 test -d build || mkdir build
 cd build
-ccmake ..
+ccmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
