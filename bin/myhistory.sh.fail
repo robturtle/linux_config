@@ -1,4 +1,0 @@
-#!/bin/bash
-date>>~/.myhistory
-history >> ~/.myhistory
-clear
