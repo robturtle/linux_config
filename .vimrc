@@ -47,8 +47,9 @@ let mapleader = ","
 let g:mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
+nmap <leader>x :q<cr>
 " Fast quit
-nmap <leader>q :q<cr>
+"nmap <leader>q :q<cr>
 " Default path
 set path+=.,..,/usr/include/,~/projects/include
 
@@ -98,6 +99,19 @@ set tm=500
 " Set line's number
 set nu
 
+
+" Use ranger as vim's file chooser
+fun! RangerChooser()
+    silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
+    if filereadable('/tmp/chosenfile')
+        exec 'edit ' . system('cat /tmp/chosenfile')
+        call system('rm /tmp/chosenfile')
+    endif
+    redraw!
+endfun
+
+map <leader>e :call RangerChooser()<CR>
+
 """""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""
@@ -140,16 +154,13 @@ au BufRead,BufNewFile *.txt        setfiletype text
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""
-" Use spaces instead of tabs
-autocmd filetype text set expandtab
 
 " Be smart when using tabs ;)
 set smarttab
 " 1 tab == 4 spaces
 set shiftwidth=4
 set tabstop=4
-autocmd Filetype java set tabstop=4
-autocmd Filetype java set shiftwidth=4
+set expandtab
 " Linebreak on 500 characters
 set lbr
 set tw=500
@@ -262,7 +273,7 @@ map <leader>p :cp<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Pressing ,ss will toggle and untoggle spell checking
+" Pressing ,ss will toggle and toggle spell checking
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
@@ -338,9 +349,15 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
 """""""""""""""""""""""""""""""""""
 " => Plugins configurations
 """""""""""""""""""""""""""""""""""
+" Tabular
+nnoremap <leader>f :Tabularize /=<cr>
+nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+
 " DoxygenToolkit settings
 map fg : Dox<cr>
 let g:DoxygenToolkit_authorName="Liu Yang, JeremyRobturtle@gmail.com"
@@ -381,76 +398,46 @@ set completeopt=menuone,menu,longest
 highlight Pmenu guibg=darkgrey guifg=black
 highlight PmenuSel guibg=lightgrey guifg=black
 
+" YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" Do not ask when starting vim
+let g:ycm_confirm_extra_conf = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+set tags+=./.tags
+" Let YCM compatible with UltiSnips!!!
+"let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+
+" UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = '<c-j>'
+"let g:UltiSnipsJumpForwardTrigger = '<tab>'
+"let g:UltiSnipsJumpBackwardTrigger = '???'
+
+" Ranger file chooser
+" Compatible with ranger 1.4.2 through 1.6.*
+"
+" Add ranger as a file chooser in vim
+"
+" If you add this function and the key binding to the .vimrc, ranger can be
+" started using the keybinding ",r".  Once you select a file by pressing
+" enter, ranger will quit again and vim will open the selected file.
+fun! RangerChooser()
+    exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+    if filereadable('/tmp/chosenfile')
+        exec 'edit ' . system('cat /tmp/chosenfile')
+        call system('rm /tmp/chosenfile')
+    endif
+    redraw!
+endfun
+map ,r :call RangerChooser()<CR>
+
 " Make cscope database
 "Enhance tags searching eara
 nmap tn :tnext<cr>
 nmap tp :tprevious<cr>
-"set tags+=./tags,./../tags,,./**/tags,/usr/include/tags,/usr/local/include/tags
-map <F5> :call Do_CsTag()<CR>
-"nmap ys :cs find s <C-R>=expand("<cword>")<CR><CR>
-"nmap yg :cs find g <C-R>=expand("<cword>")<CR><CR>
-"nmap yc :cs find c <C-R>=expand("<cword>")<CR><CR>
-"nmap yt :cs find t <C-R>=expand("<cword>")<CR><CR>
-"nmap ye :cs find e <C-R>=expand("<cword>")<CR><CR>
-"nmap yf :cs find f <C-R>=expand("<cfile>")<CR><CR>
-"nmap yi :cs find i ^<C-R>=expand("<cfile>")<CR><CR>
-"nmap yd :cs find d <C-R>=expand("<cword>")<CR><CR>
-function! Do_CsTag()
-	let dir=getcwd()
-	if filereadable("tags")
-		if(g:iswindows==1)
-			let tagsdeleted=delete(dir."\\"."tags")
-		else
-			let tagsdeleted=delete("./"."tags")
-		endif
-		if(tagsdeleted!=0)
-			echohl WarningMsg | echo "Fail to do tags! Cannot delete tags." | echohl None
-			return
-		endif
-	endif
-	if has("cscope")
-		silent! execute "cs kill -l"
-	endif
-	if filereadable("cscope.files")
-		if(g:iswindows==1)
-			let csfilesdeleted=delete(dir."\\"."cscope.files")
-		else
-			let csfilesdeleted=delete("./"."cscope.files")
-		endif
-		if(csfilesdeleted!=0)
-			echohl WarningMsg | echo "Fail to do cscope! Cannot delete cscope.files." | echohl None
-			return
-		endif
-	endif
-	if filereadable(".cscope.out")
-		if(g:iswindows==1)
-			let csoutdeleted=delete(dir."\\".".cscope.out")
-		else
-			let csoutdeleted=delete("./".".cscope.out")
-		endif
-		if(csoutdeleted!=0)
-			echohl WarningMsg | echo "Fail to do cscope! Cannot delete .cscope.out." | echohl None
-			return
-		endif
-	endif
-	if(executable('ctags'))
-		"silent! execute "!ctags -R --c-types=+p --fields=+S *"
-		silent! execute "!ctags -R --c-kinds=+px --c++-kinds=+px --fields=+iaS --extra=+q ."
-	endif
-	if(executable('cscope') && has("cscope"))
-		if(g:iswindows!=1)
-			silent! execute "!find . -name '*.h' -o -name '*.c' -o -name '*.cpp' -o -name '*.java' -o -name '*.cs' -o -name '*.cxx' > cscope.files"
-		else
-			silent! execute "!dir /s/b *.c,*.cpp,*.h,*.java,*.cs >> cscope.files"
-		endif
-		silent! execute "!cscope -b cscope.files"
-		silent! execute "!rm cscope.files"
-		execute "normal :"
-		if filereadable(".cscope.out")
-			execute "cs add .cscope.out"
-		endif
-	endif
-endfunction
 
 " Vundle
 " Brief help
@@ -472,26 +459,36 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
 Bundle 'tpope/vim-rails.git'
-Bundle 'mbbill/code_complete'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'laoyang945/vimflowy'
 "Bundle 'robturtle/md-vim.git'
 Bundle 'robturtle/vim-pandoc'
-"Bundle 'Rip-Rip/clang_complete'
-"Bundle 'scrooloose/syntastic'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'robturtle/zencoding-vim'
+Bundle 'robturtle/vim-syntax'
+Bundle 'robturtle/UltiSnips'
+Bundle 'scrooloose/syntastic'
+Bundle 'Valloric/ListToggle'
+Bundle 'vimim/vimim'
+
 " vim-scripts repos
+Bundle 'winmanager'
 Bundle 'L9'
 Bundle 'FuzzyFinder'
 Bundle 'DoxygenToolkit.vim'
 Bundle 'a.vim'
-"Bundle 'OmniCppComplete'
+Bundle 'Tabular'
+
 " non github repos
 Bundle 'git://git.wincent.com/command-t.git'
-" c/c++ programming completer
-Bundle 'Valloric/YouCompleteMe'
-"Bundle 'win-manager-improved'
 
 filetype plugin indent on " required
 syntax on
 
 " Vundle end
+
+" Plugin develop
+" reLoading .vimrc
+"nmap ??? source ~/.vimrc
+nmap <leader>o :source ~/.vimrc<cr>
+imap <leader>o <Esc>l:call feedkeys('a', 'n')
