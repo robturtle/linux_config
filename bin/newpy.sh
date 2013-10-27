@@ -1,6 +1,7 @@
 #!/bin/bash
 [ "$1" != "" ] && file="$1".py || exit
-echo "#!/usr/bin/env python" > "$file"
+version=2.7
+echo "#!/usr/bin/env python${version}" > "$file"
 echo "# Filename: ${1}.sh"    >> "$file"
 echo "# Author:   LIU Yang"   >> "$file"
 echo "# Create Time: $(date)" >> "$file"

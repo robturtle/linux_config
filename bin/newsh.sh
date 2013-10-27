@@ -6,11 +6,16 @@ else
 	filename=${1%%\.*}
 fi
 
-cp ~/bin/bash_template.txt "$filename.sh"
-chmod +x "$filename.sh"
 file="$filename.sh"
+test -f "$file" && echo "$file already exist! Aborting..." && exit
+touch "$file"
+chmod +x "$file"
+
 echo "# Filename: ${1}.sh"    >> "$file"
 echo "# Author:   LIU Yang"   >> "$file"
 echo "# Create Time: $(date)" >> "$file"
 echo "# License:     LGPL v2.0+"  >> "$file"
 echo "# Contact Me:  JeremyRobturtle@gmail.com" >> "$file"
+echo "# Brief:" >> "$file"
+
+test -n "$EDITOR" && "$EDITOR" "$file"
