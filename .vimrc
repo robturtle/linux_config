@@ -351,6 +351,50 @@ endfunction
 """""""""""""""""""""""""""""""""""
 " => Plugins configurations
 """""""""""""""""""""""""""""""""""
+" Ctrlp.vim
+" Sometimes I wanna open hidden files
+let g:ctrlp_show_hidden = 1
+"This will use 'git ls-files' when found .git
+"unlet g:ctrlp_user_command
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files'],
+  \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+  \ },
+\ 'fallback': 'find %s -type f'
+\ }
+
+
+
+" Tabular
+nnoremap <leader>f :Tabularize /=<cr>
+nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+
+" winManager
+let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
+let g:winManagerWidth=30
+let g:defaultExplorer=0
+nmap wm :WMToggle<cr>
+
+" fugitive the Git wrapper
+nmap gs :Gstatus<cr>
+
+" YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" Do not ask when starting vim
+let g:ycm_confirm_extra_conf = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+set tags+=./.tags
+" Let YCM compatible with UltiSnips!!!
+"let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+
+" UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = '<c-j>'
+
 " Use ranger as vim's file chooser
 fun! RangerChooser()
     silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
@@ -406,6 +450,9 @@ set tags+=./.tags
 "let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
 "let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
+" YouCompleteMeeeeeee!!!!!!!!
+Bundle 'Valloric/YouCompleteMe'
+""""""" c/c++ jump support
 " header/source jump
 Bundle 'a.vim'
 " Commenter
@@ -451,6 +498,15 @@ Bundle 'UltiSnips'
 let g:UltiSnipsExpandTrigger = '<c-j>'
 " vim-scripts repos
 Bundle 'robturtle/USsnippets'
+
+" Move around
+Bundle 'Lokaltog/vim-easymotion'
+" Flowy simulation
+"Bundle 'laoyang945/vimflowy'
+" Chinese input method
+"Bundle 'vimim/vimim'
+" Window manager
+Bundle 'winmanager'
 
 " Move around
 Bundle 'Lokaltog/vim-easymotion'
@@ -523,13 +579,14 @@ Bundle 'tpope/vim-liquid'
 Bundle 'python.vim'
 Bundle 'pangloss/vim-javascript'
 
-""""""""""""""""""""""""""
 " Html writer
 """"""""""""""""""""""""""
 "zen coding like plugin
 " TODO Which one is better?
 Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
 Bundle 'robturtle/zencoding-vim'
+" vim-scripts repos
+Bundle 'robturtle/USsnippets'
 
 filetype plugin indent on " required
 syntax on
