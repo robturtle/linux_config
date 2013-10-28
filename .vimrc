@@ -358,13 +358,13 @@ let g:ctrlp_follow_symlinks = 0
 let g:ctrlp_show_hidden = 1
 "This will use 'git ls-files' when found .git
 "unlet g:ctrlp_user_command
-let g:ctrlp_user_command = {
-\ 'types': {
-  \ 1: ['.git', 'cd %s && git ls-files'],
-  \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-  \ },
-\ 'fallback': 'find %s -type f'
-\ }
+"let g:ctrlp_user_command = {
+"\ 'types': {
+  "\ 1: ['.git', 'cd %s && git ls-files'],
+  "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+  "\ },
+"\ 'fallback': 'find %s -type f'
+"\ }
 
 
 
