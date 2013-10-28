@@ -352,6 +352,8 @@ endfunction
 " => Plugins configurations
 """""""""""""""""""""""""""""""""""
 " Ctrlp.vim
+" I have too many symlinks link to my git repo
+let g:ctrlp_follow_symlinks = 0
 " Sometimes I wanna open hidden files
 let g:ctrlp_show_hidden = 1
 "This will use 'git ls-files' when found .git
