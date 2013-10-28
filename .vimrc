@@ -173,7 +173,7 @@ map <C-l> <C-W>l
 map th <C-Pageup>
 map tl <C-Pagedown>
 " Opens the same file in another tab
-map <leader>te :tabedit <c-r>=expand("%")<cr><cr>
+map <leader>te :tabnew<cr>
 " Move current tab to right position
 map <leader>tm :tabmove<cr>
 
@@ -211,7 +211,8 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ %{fugitive#statusline()}
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 """""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -240,7 +241,7 @@ vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with vimgrep, display your results in cope by doing:
-"   <leader>cc
+"   <leader>cm
 "
 " To go to the next search result do:
 "   <leader>n
@@ -248,7 +249,7 @@ vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
+map <leader>cm :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
@@ -272,6 +273,8 @@ map <leader>s? z=
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+" Entry to temporary snippets
+nmap <leader>ts :tabedit ~/my.snippets<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -336,32 +339,6 @@ endfunction
 """""""""""""""""""""""""""""""""""
 " => Plugins configurations
 """""""""""""""""""""""""""""""""""
-" Tabular
-nnoremap <leader>f :Tabularize /=<cr>
-nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
-vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
-
-" winManager
-let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
-let g:winManagerWidth=30
-let g:defaultExplorer=0
-nmap wm :WMToggle<cr>
-
-" YouCompleteMe
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" Do not ask when starting vim
-let g:ycm_confirm_extra_conf = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-set tags+=./.tags
-" Let YCM compatible with UltiSnips!!!
-"let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-
-" UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = '<c-j>'
-
 " Use ranger as vim's file chooser
 fun! RangerChooser()
     silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
@@ -389,49 +366,162 @@ Bundle 'gmarik/vundle'
 " My bundles here:
 "
 
-""""""" Programming
+""""""""""""""""""""""""""
+" Programming
+""""""""""""""""""""""""""
 " symatics check
 Bundle 'scrooloose/syntastic'
 " facility to syntastic, open llist quickly
 Bundle 'Valloric/ListToggle'
+" git wrapper
+Bundle 'tpope/vim-fugitive'
+" fugitive the Git wrapper
+nmap gs :Gstatus<cr>
+nmap gl :Gllog<cr>
+nmap gpu :Git push<cr>
 
-""""""" c/c++ jump support
+" YouCompleteMeeeeeee!!!!!!!!
+Bundle 'Valloric/YouCompleteMe'
+" YouCompleteMe
+nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
+"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
+" Do not ask when starting vim
+let g:ycm_confirm_extra_conf = 0
+let g:syntastic_always_populate_loc_list = 1
+let g:ycm_collect_identifiers_from_tags_files = 1
+set tags+=./.tags
+" Let YCM compatible with UltiSnips!!!
+"let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
+"let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
+
 " header/source jump
 Bundle 'a.vim'
+" Commenter
+Bundle 'scrooloose/nerdcommenter'
 
+""""""""""""""""""""""""""
 " File finder
+""""""""""""""""""""""""""
 "Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
+" Ctrlp.vim
+" Sometimes I wanna open hidden files
+let g:ctrlp_show_hidden = 1
+"This will use 'git ls-files' when found .git
+"unlet g:ctrlp_user_command
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files'],
+  \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+  \ },
+\ 'fallback': 'find %s -type f'
+\ }
+
+""""""""""""""""""""""""""
+" Misc
+""""""""""""""""""""""""""
 " Vim utilities
 Bundle 'L9'
 " Statusline utility
 Bundle 'Lokaltog/powerline'
 " Format table like contents
 Bundle 'Tabular'
+" Tabular
+nnoremap <leader>f :Tabularize /=<cr>
+nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+
+""""""""""""""""""""""""""
 " Sniiiippets!!!
+""""""""""""""""""""""""""
 Bundle 'UltiSnips'
-
-" Colors
-Bundle 'altercation/vim-colors-solarized'
-
-" Html writer
-"zen coding like plugin
-Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
-
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
-Bundle 'laoyang945/vimflowy'
-"Bundle 'robturtle/md-vim.git'
-Bundle 'robturtle/vim-pandoc'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'robturtle/zencoding-vim'
-Bundle 'robturtle/vim-syntax'
-Bundle 'vimim/vimim'
-
+" UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = '<c-j>'
 " vim-scripts repos
 Bundle 'robturtle/USsnippets'
+
+" Move around
+Bundle 'Lokaltog/vim-easymotion'
+" Flowy simulation
+"Bundle 'laoyang945/vimflowy'
+" Chinese input method
+"Bundle 'vimim/vimim'
+" Window manager
 Bundle 'winmanager'
+" TODO A better win manager"
+" winManager
+let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
+let g:winManagerWidth=30
+let g:defaultExplorer=0
+nmap wm :WMToggle<cr>
+
+" Modify surrounding tag/'/"/(/[, etc.
+Bundle 'tpope/vim-surround'
+" Auto complete brackets
+Bundle 'Raimondi/delimitMate'
+""""""""""""""""""""""""""
+" End of Misc
+""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""
+" Colors
+""""""""""""""""""""""""""
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'kien/rainbow_parentheses.vim'
+" rainbow_parentheses
+let g:rbpt_colorpairs = [
+    \ ['brown', 'RoyalBlue3'],
+    \ ['Darkblue', 'SeaGreen3'],
+    \ ['Darkgray', 'DarkOrchid3'],
+    \ ['darkgreen', 'firebrick3'],
+    \ ['darkcyan', 'RoyalBlue3'],
+    \ ['darkred', 'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown', 'firebrick3'],
+    \ ['gray', 'RoyalBlue3'],
+    \ ['black', 'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrichd3'],
+    \ ['Darkblue', 'firebrick3'],
+    \ ['darkgreen', 'RoyalBlue3'],
+    \ ['darkcyan', 'SeaGreen3'],
+    \ ['darkred', 'DarkOrichid3'],
+    \ ['red', 'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
+Bundle 'Yggdroot/indentLine'
+" indentLine
+let g:indentLine_noConcealCursor = 1
+let g:indentLine_color_term = 0
+let g:indentLine_char = '|'
+""""""""""""""""""""""""""
+" End of Color
+""""""""""""""""""""""""""
+
+""""""""""""""""""""""""""
+" Filetype support
+""""""""""""""""""""""""""
+" TODO Gonna find other Markdown ft support
+"Bundle 'robturtle/vim-pandoc'
+Bundle 'plasticboy/vim-markdown'
+"Bundle 'tpope/vim-rails.git'
+" TODO Deal with later
+Bundle 'robturtle/vim-syntax'
+Bundle 'python.vim'
+Bundle 'pangloss/vim-javascript'
+
+""""""""""""""""""""""""""
+" Html writer
+""""""""""""""""""""""""""
+"zen coding like plugin
+" TODO Which one is better?
+Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
+Bundle 'robturtle/zencoding-vim'
 
 filetype plugin indent on " required
 syntax on
