@@ -211,7 +211,8 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ %{fugitive#statusline()}
+"set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 """""""""""""""""""""""""""""""""""
 " => Editing mappings
@@ -336,6 +337,21 @@ endfunction
 """""""""""""""""""""""""""""""""""
 " => Plugins configurations
 """""""""""""""""""""""""""""""""""
+" Ctrlp.vim
+" Sometimes I wanna open hidden files
+let g:ctrlp_show_hidden = 1
+"This will use 'git ls-files' when found .git
+"unlet g:ctrlp_user_command
+let g:ctrlp_user_command = {
+\ 'types': {
+  \ 1: ['.git', 'cd %s && git ls-files'],
+  \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+  \ },
+\ 'fallback': 'find %s -type f'
+\ }
+
+
+
 " Tabular
 nnoremap <leader>f :Tabularize /=<cr>
 nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
@@ -346,6 +362,9 @@ let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
 let g:winManagerWidth=30
 let g:defaultExplorer=0
 nmap wm :WMToggle<cr>
+
+" fugitive the Git wrapper
+nmap gs :Gstatus<cr>
 
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -394,7 +413,10 @@ Bundle 'gmarik/vundle'
 Bundle 'scrooloose/syntastic'
 " facility to syntastic, open llist quickly
 Bundle 'Valloric/ListToggle'
-
+" git wrapper
+Bundle 'tpope/vim-fugitive'
+" YouCompleteMeeeeeee!!!!!!!!
+Bundle 'Valloric/YouCompleteMe'
 """"""" c/c++ jump support
 " header/source jump
 Bundle 'a.vim'
@@ -410,28 +432,33 @@ Bundle 'Lokaltog/powerline'
 Bundle 'Tabular'
 " Sniiiippets!!!
 Bundle 'UltiSnips'
+" Move around
+Bundle 'Lokaltog/vim-easymotion'
+" Flowy simulation
+"Bundle 'laoyang945/vimflowy'
+" Chinese input method
+"Bundle 'vimim/vimim'
+" Window manager
+Bundle 'winmanager'
 
 " Colors
 Bundle 'altercation/vim-colors-solarized'
 
+" Filetype support
+" TODO Gonna find other Markdown ft support
+Bundle 'robturtle/vim-pandoc'
+"Bundle 'tpope/vim-rails.git'
+" TODO Deal with later
+Bundle 'robturtle/vim-syntax'
+
 " Html writer
 "zen coding like plugin
+" TODO Which one is better?
 Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
-
-Bundle 'tpope/vim-fugitive'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'tpope/vim-rails.git'
-Bundle 'laoyang945/vimflowy'
-"Bundle 'robturtle/md-vim.git'
-Bundle 'robturtle/vim-pandoc'
-Bundle 'Valloric/YouCompleteMe'
 Bundle 'robturtle/zencoding-vim'
-Bundle 'robturtle/vim-syntax'
-Bundle 'vimim/vimim'
 
 " vim-scripts repos
 Bundle 'robturtle/USsnippets'
-Bundle 'winmanager'
 
 filetype plugin indent on " required
 syntax on
