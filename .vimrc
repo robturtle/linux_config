@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Based On:
 " 	Amir Salihefendic's .vimrc version 5.0 -29/05/12 15:43:36
 " 	
@@ -29,7 +29,7 @@
 "	-> C/C++ compiling, debugging related
 "	-> vimrc facilities
 "
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""
@@ -45,11 +45,9 @@ set autoread
 " like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
-" Fast saving
+" Fast saving/quiting
 nmap <leader>w :w!<cr>
 nmap <leader>x :q<cr>
-" Fast quit
-"nmap <leader>q :q<cr>
 " Default path
 set path+=.,..,/usr/include/,~/projects/include
 
@@ -99,38 +97,25 @@ set tm=500
 " Set line's number
 set nu
 
-
-" Use ranger as vim's file chooser
-fun! RangerChooser()
-    silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
-    if filereadable('/tmp/chosenfile')
-        exec 'edit ' . system('cat /tmp/chosenfile')
-        call system('rm /tmp/chosenfile')
-    endif
-    redraw!
-endfun
-
-map <leader>e :call RangerChooser()<CR>
-
 """""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""
 " Enable syntax highlighting
 syntax enable
+set background=dark
 
 try
 	colorscheme desert
+    "colorscheme solarized
 catch
 endtry
 
-set background=dark
-
 " Set extra options when running in GUI mode
 if has("gui_running")
-	set guioptions-=T
-	set guioptions+=e
-	set t_Co=256
-	set guitablabel=%M\ %t
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
 endif
 
 " Use Unix as the standard file type
@@ -174,35 +159,40 @@ set wrap "Wrap lines
 " Treat long lines as break lines (useful when moving around in them!)
 map j gj
 map k gk
+
 " Disable hightlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+map <silent> <leader><space> :noh<cr>
+
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" Move around split windows
 map th <C-Pageup>
 map tl <C-Pagedown>
+" Opens the same file in another tab
+map <leader>te :tabedit <c-r>=expand("%")<cr><cr>
+" Move current tab to right position
+map <leader>tm :tabmove<cr>
+
 " Close current buffers
-map <leader>bd :Bdelete<cr>
+map <leader>bc :Bclose<cr>
 " Close all the buffers
 map <leader>ba :1,1000 bd!<cr>
-" Useful mapping for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-" Opens a new tab with the current buffer's path
-" Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>
+
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+
 " Specify the behavior when switching between buffers
 try
 	set switchbuf=useopen,usetab,newtab
 	set stal=2
 catch
 endtry
+
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
 	\ if line("'\"") > 0 && line("'\"") <= line("$") |
@@ -216,7 +206,9 @@ set viminfo^=%
 " => Status line
 """"""""""""""""""""""""""""""
 " Always show the status line
+" Powered by powerline
 set laststatus=2
+let g:Powerline_symbols = 'unicode'
 
 " Format the status line
 set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
@@ -233,21 +225,14 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
-" next/previous msg on copen
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When you press gv you vimgrep after the selected text
-vnoremap <silent>gv :call VisualSelection('gv', '')<CR>
+vnoremap <silent>gv :call VisualSelection('gv', '')<CR><cr>
 
 " Open vimgrep and put the cursor in the right position
 map <leader>g :vimgrep // **/*.*<left><left><left><left><left><left><left><left>
-
-" Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
@@ -356,49 +341,14 @@ nnoremap <leader>f :Tabularize /=<cr>
 nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 
-" DoxygenToolkit settings
-map fg : Dox<cr>
-let g:DoxygenToolkit_authorName="Liu Yang, JeremyRobturtle@gmail.com"
-let s:licenseTag="License: GNU Public License"
-"let g:DoxygenToolkit_licenseTag=s:licenseTag
-let g:DoxygenToolkit_undocTag="DOXIGEN_SKIP_BLOCK"
-let g:DoxygenToolkit_compactOneLineDoc="yes"
-"let g:DoxygenToolkit_commentType="C++"
-let g:DoxygenToolkit_briefTag_pre="@brief\t"
-"let g:DoxygenToolkit_paramTag_pre="@param\t"
-let g:DoxygenToolkit_returnTag="@return\t"
-let g:DoxygenToolkit_briefTag_funcName="no"
-let g:DoxygenToolkit_maxFunctionProtoLines=30
-"let g:DoxygenToolkit_briefTag_post="<++>"
-
 " winManager
 let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
 let g:winManagerWidth=30
 let g:defaultExplorer=0
 nmap wm :WMToggle<cr>
 
-" omnicppcomplete
-set nocp
-let OmniCpp_NamespaceSearch = 2
-let OmniCpp_GlobalScopeSearch = 1
-let OmniCpp_ShowAccess = 1
-let OmniCpp_ShowPrototypeInAbbr = 1
-let OmniCpp_MayCompleteDot = 1
-let OmniCpp_MayCompleteArrow = 1
-let OmniCpp_MayCompleteScope = 1
-let OmniCpp_LocalSearchDecl = 1
-" if you want complete 3rd-party namespace, fill its name below
-let OmniCpp_DefaultNamespaces = ["std", "_GLIBCXX_STD"]
-" auto close complete window
-au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-set completeopt=menuone,menu,longest
-" highlight complete menu
-highlight Pmenu guibg=darkgrey guifg=black
-highlight PmenuSel guibg=lightgrey guifg=black
-
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <F5> :YcmForceCompileAndDiagnostics<CR>
 "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
 " Do not ask when starting vim
 let g:ycm_confirm_extra_conf = 0
@@ -411,31 +361,17 @@ set tags+=./.tags
 
 " UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = '<c-j>'
-"let g:UltiSnipsJumpForwardTrigger = '<tab>'
-"let g:UltiSnipsJumpBackwardTrigger = '???'
 
-" Ranger file chooser
-" Compatible with ranger 1.4.2 through 1.6.*
-"
-" Add ranger as a file chooser in vim
-"
-" If you add this function and the key binding to the .vimrc, ranger can be
-" started using the keybinding ",r".  Once you select a file by pressing
-" enter, ranger will quit again and vim will open the selected file.
+" Use ranger as vim's file chooser
 fun! RangerChooser()
-    exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
+    silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
     if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
         call system('rm /tmp/chosenfile')
     endif
     redraw!
 endfun
-map ,r :call RangerChooser()<CR>
-
-" Make cscope database
-"Enhance tags searching eara
-nmap tn :tnext<cr>
-nmap tp :tprevious<cr>
+map <leader>e :call RangerChooser()<CR>
 
 " Vundle
 " Brief help
@@ -452,34 +388,50 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 " My bundles here:
 "
-" original repos on github
+
+""""""" Programming
+" symatics check
+Bundle 'scrooloose/syntastic'
+" facility to syntastic, open llist quickly
+Bundle 'Valloric/ListToggle'
+
+""""""" c/c++ jump support
+" header/source jump
+Bundle 'a.vim'
+
+" File finder
+"Bundle 'wincent/Command-T'
+Bundle 'kien/ctrlp.vim'
+" Vim utilities
+Bundle 'L9'
+" Statusline utility
+Bundle 'Lokaltog/powerline'
+" Format table like contents
+Bundle 'Tabular'
+" Sniiiippets!!!
+Bundle 'UltiSnips'
+
+" Colors
+Bundle 'altercation/vim-colors-solarized'
+
+" Html writer
+"zen coding like plugin
+Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
+
 Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
 Bundle 'tpope/vim-rails.git'
-Bundle 'altercation/vim-colors-solarized'
 Bundle 'laoyang945/vimflowy'
 "Bundle 'robturtle/md-vim.git'
 Bundle 'robturtle/vim-pandoc'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'robturtle/zencoding-vim'
 Bundle 'robturtle/vim-syntax'
-Bundle 'scrooloose/syntastic'
-Bundle 'Valloric/ListToggle'
 Bundle 'vimim/vimim'
 
 " vim-scripts repos
-Bundle 'UltiSnips'
 Bundle 'robturtle/USsnippets'
 Bundle 'winmanager'
-Bundle 'L9'
-Bundle 'FuzzyFinder'
-Bundle 'DoxygenToolkit.vim'
-Bundle 'a.vim'
-Bundle 'Tabular'
-
-" non github repos
-Bundle 'git://git.wincent.com/command-t.git'
 
 filetype plugin indent on " required
 syntax on
