@@ -129,8 +129,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" Markdown format
-au BufNewFile,BufRead *.md set ft=md
 " CMakeLists.txt as cmake type
 au BufRead,BufNewFile CMakeLists.txt        set filetype=cmake
 " Add *.txt to text filetype
@@ -275,6 +273,20 @@ noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/my.snippets<cr>
+
+" Emacs like movement in insert mode"
+func! Append()
+    normal! l
+    if col('.') >= col('$') - 1
+        startinsert!
+    else
+        startinsert
+        normal! l
+    endif
+endfunc
+
+imap <c-f> <Esc>:call Append()<cr>
+imap <c-b> <Esc>:startinsert<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -467,32 +479,32 @@ Bundle 'Raimondi/delimitMate'
 " Colors
 """"""""""""""""""""""""""
 Bundle 'altercation/vim-colors-solarized'
-Bundle 'kien/rainbow_parentheses.vim'
+"Bundle 'kien/rainbow_parentheses.vim'
 " rainbow_parentheses
-let g:rbpt_colorpairs = [
-    \ ['brown', 'RoyalBlue3'],
-    \ ['Darkblue', 'SeaGreen3'],
-    \ ['Darkgray', 'DarkOrchid3'],
-    \ ['darkgreen', 'firebrick3'],
-    \ ['darkcyan', 'RoyalBlue3'],
-    \ ['darkred', 'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['brown', 'firebrick3'],
-    \ ['gray', 'RoyalBlue3'],
-    \ ['black', 'SeaGreen3'],
-    \ ['darkmagenta', 'DarkOrichd3'],
-    \ ['Darkblue', 'firebrick3'],
-    \ ['darkgreen', 'RoyalBlue3'],
-    \ ['darkcyan', 'SeaGreen3'],
-    \ ['darkred', 'DarkOrichid3'],
-    \ ['red', 'firebrick3'],
-    \ ]
-let g:rbpt_max = 16
-let g:rbpt_loadcmd_toggle = 0
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
+"let g:rbpt_colorpairs = [
+    "\ ['brown', 'RoyalBlue3'],
+    "\ ['Darkblue', 'SeaGreen3'],
+    "\ ['Darkgray', 'DarkOrchid3'],
+    "\ ['darkgreen', 'firebrick3'],
+    "\ ['darkcyan', 'RoyalBlue3'],
+    "\ ['darkred', 'SeaGreen3'],
+    "\ ['darkmagenta', 'DarkOrchid3'],
+    "\ ['brown', 'firebrick3'],
+    "\ ['gray', 'RoyalBlue3'],
+    "\ ['black', 'SeaGreen3'],
+    "\ ['darkmagenta', 'DarkOrichd3'],
+    "\ ['Darkblue', 'firebrick3'],
+    "\ ['darkgreen', 'RoyalBlue3'],
+    "\ ['darkcyan', 'SeaGreen3'],
+    "\ ['darkred', 'DarkOrichid3'],
+    "\ ['red', 'firebrick3'],
+    "\ ]
+"let g:rbpt_max = 16
+"let g:rbpt_loadcmd_toggle = 0
+"au VimEnter * RainbowParenthesesToggle
+"au Syntax * RainbowParenthesesLoadRound
+"au Syntax * RainbowParenthesesLoadSquare
+"au Syntax * RainbowParenthesesLoadBraces
 
 Bundle 'Yggdroot/indentLine'
 " indentLine
@@ -506,12 +518,8 @@ let g:indentLine_char = '|'
 """"""""""""""""""""""""""
 " Filetype support
 """"""""""""""""""""""""""
-" TODO Gonna find other Markdown ft support
-"Bundle 'robturtle/vim-pandoc'
 Bundle 'plasticboy/vim-markdown'
-"Bundle 'tpope/vim-rails.git'
-" TODO Deal with later
-Bundle 'robturtle/vim-syntax'
+Bundle 'tpope/vim-liquid'
 Bundle 'python.vim'
 Bundle 'pangloss/vim-javascript'
 
@@ -531,5 +539,3 @@ syntax on
 " Plugin develop
 " reLoading .vimrc
 "nmap ??? source ~/.vimrc
-nmap <leader>o :source ~/.vimrc<cr>
-imap <leader>o <Esc>l:call feedkeys('a', 'n')
