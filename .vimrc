@@ -272,7 +272,7 @@ noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 " Entry to temporary snippets
-nmap <leader>ts :tabedit ~/my.snippets<cr>
+nmap <leader>ts :tabedit ~/Snippets/my.snippets<cr>
 
 " Emacs like movement in insert mode"
 func! Append()
