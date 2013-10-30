@@ -211,7 +211,7 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l\ %{fugitive#statusline()}
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ %p%%\ \ %{fugitive#statusline()}
 "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 """""""""""""""""""""""""""""""""""
@@ -272,11 +272,17 @@ map <leader>s? z=
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
+
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/Snippets/my.snippets<cr>
+" Entry to my .vimrc
+nmap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
 
 " fast map of c-x,c-f
-imap <c-u> <c-x><c-f>
+imap <c-i> <c-x><c-f>
+
+" fast map of :cd
+nmap cd :cd 
 
 " Emacs like movement in insert mode"
 func! Append()
