@@ -547,9 +547,4 @@ Bundle 'robturtle/USsnippets'
 
 filetype plugin indent on " required
 syntax on
-
 " Vundle end
-
-" Plugin develop
-" reLoading .vimrc
-"nmap ??? source ~/.vimrc
