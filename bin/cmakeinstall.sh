@@ -12,7 +12,8 @@ if [[ "$1" == "" ]]; then
     fi
 else
     path="$1"
-    test -d "$path" || cmakecreate.sh "$path"
+    test -d "$path" || echo "Build path $path not found!"
+    test -d "$path" || exit 3
 fi
 
 cd "$path"
