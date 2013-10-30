@@ -334,62 +334,27 @@ endfunction
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()
-   let l:currentBufNum = bufnr("%")
-   let l:alternateBufNum = bufnr("#")
+    let l:currentBufNum = bufnr("%")
+    let l:alternateBufNum = bufnr("#")
 
-   if buflisted(l:alternateBufNum)
-     buffer #
-   else
-     bnext
-   endif
+    if buflisted(l:alternateBufNum)
+         buffer #
+    else
+         bnext
+    endif
 
-   if bufnr("%") == l:currentBufNum
-     new
-   endif
+    if bufnr("%") == l:currentBufNum
+         new
+    endif
 
-   if buflisted(l:currentBufNum)
-     execute("bdelete! ".l:currentBufNum)
-   endif
+    if buflisted(l:currentBufNum)
+         execute("bdelete! ".l:currentBufNum)
+    endif
 endfunction
 
 """""""""""""""""""""""""""""""""""
 " => Plugins configurations
 """""""""""""""""""""""""""""""""""
-" Ctrlp.vim
-" I have too many symlinks link to my git repo
-let g:ctrlp_follow_symlinks = 0
-" Sometimes I wanna open hidden files
-let g:ctrlp_show_hidden = 1
-
-" Tabular
-nnoremap <leader>f :Tabularize /=<cr>
-nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
-vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
-
-" winManager
-let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
-let g:winManagerWidth=30
-let g:defaultExplorer=0
-nmap wm :WMToggle<cr>
-
-" fugitive the Git wrapper
-nmap gs :Gstatus<cr>
-
-" YouCompleteMe
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-"let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
-" Do not ask when starting vim
-let g:ycm_confirm_extra_conf = 0
-let g:syntastic_always_populate_loc_list = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-set tags+=./.tags
-" Let YCM compatible with UltiSnips!!!
-"let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
-
-" UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = '<c-j>'
-
 " Use ranger as vim's file chooser
 fun! RangerChooser()
     silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
@@ -441,12 +406,7 @@ let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
 let g:ycm_collect_identifiers_from_tags_files = 1
 set tags+=./.tags
-" Let YCM compatible with UltiSnips!!!
-"let g:ycm_key_list_select_completion = ['<C-TAB>', '<Down>']
-"let g:ycm_key_list_previous_completion = ['<C-S-TAB>', '<Up>']
 
-" YouCompleteMeeeeeee!!!!!!!!
-Bundle 'Valloric/YouCompleteMe'
 """"""" c/c++ jump support
 " header/source jump
 Bundle 'a.vim'
@@ -468,14 +428,6 @@ Bundle 'kien/ctrlp.vim'
 let g:ctrlp_follow_symlinks = 1
 " Sometimes I wanna open hidden files
 let g:ctrlp_show_hidden = 1
-"This will use 'git ls-files' when found .git
-"let g:ctrlp_user_command = {
-"\ 'types': {
-  "\ 1: ['.git', 'cd %s && git ls-files'],
-  "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
-  "\ },
-"\ 'fallback': 'find %s -type f'
-"\ }
 
 """"""""""""""""""""""""""
 " Misc
@@ -506,9 +458,6 @@ Bundle 'Lokaltog/vim-easymotion'
 "Bundle 'laoyang945/vimflowy'
 " Chinese input method
 "Bundle 'vimim/vimim'
-" Window manager
-Bundle 'winmanager'
-
 " Move around
 Bundle 'Lokaltog/vim-easymotion'
 " Flowy simulation
