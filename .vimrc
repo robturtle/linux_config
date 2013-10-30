@@ -283,6 +283,7 @@ imap <c-i> <c-x><c-f>
 
 " fast map of :cd
 nmap cd :cd 
+nmap cm :!cmake
 
 " Emacs like movement in insert mode"
 func! Append()
