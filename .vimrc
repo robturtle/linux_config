@@ -170,8 +170,10 @@ map <C-l> <C-W>l
 " Move around split windows
 map th <C-Pageup>
 map tl <C-Pagedown>
-" Opens the same file in another tab
-map <leader>te :tabnew<cr>
+" Opens a new tab
+map <c-t> :tabnew<cr>
+" Open a file under the same directory"
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>
 " Move current tab to right position
 map <leader>tm :tabmove<cr>
 
@@ -239,7 +241,7 @@ vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with vimgrep, display your results in cope by doing:
-"   <leader>cm
+"   <leader>q
 "
 " To go to the next search result do:
 "   <leader>n
@@ -247,7 +249,6 @@ vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cm :botright cope<cr>
 map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
 map <leader>n :cn<cr>
 map <leader>p :cp<cr>
@@ -273,6 +274,9 @@ noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/Snippets/my.snippets<cr>
+
+" fast map of c-x,c-f
+imap <c-u> <c-x><c-f>
 
 " Emacs like movement in insert mode"
 func! Append()
@@ -356,17 +360,6 @@ endfunction
 let g:ctrlp_follow_symlinks = 0
 " Sometimes I wanna open hidden files
 let g:ctrlp_show_hidden = 1
-"This will use 'git ls-files' when found .git
-"unlet g:ctrlp_user_command
-"let g:ctrlp_user_command = {
-"\ 'types': {
-  "\ 1: ['.git', 'cd %s && git ls-files'],
-  "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
-  "\ },
-"\ 'fallback': 'find %s -type f'
-"\ }
-
-
 
 " Tabular
 nnoremap <leader>f :Tabularize /=<cr>
@@ -460,23 +453,29 @@ Bundle 'a.vim'
 " Commenter
 Bundle 'scrooloose/nerdcommenter'
 
+"Bundle 'jalcine/cmake.vim' Is buggy right now
+""""""""""""""""""""""""""
+" End of Programming
+""""""""""""""""""""""""""
+
 """"""""""""""""""""""""""
 " File finder
 """"""""""""""""""""""""""
 "Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
 " Ctrlp.vim
+" I have many symlinks to git repos
+let g:ctrlp_follow_symlinks = 1
 " Sometimes I wanna open hidden files
 let g:ctrlp_show_hidden = 1
 "This will use 'git ls-files' when found .git
-"unlet g:ctrlp_user_command
-let g:ctrlp_user_command = {
-\ 'types': {
-  \ 1: ['.git', 'cd %s && git ls-files'],
-  \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-  \ },
-\ 'fallback': 'find %s -type f'
-\ }
+"let g:ctrlp_user_command = {
+"\ 'types': {
+  "\ 1: ['.git', 'cd %s && git ls-files'],
+  "\ 2: ['.hg', 'hg --cwd %s locate -I .'],
+  "\ },
+"\ 'fallback': 'find %s -type f'
+"\ }
 
 """"""""""""""""""""""""""
 " Misc
