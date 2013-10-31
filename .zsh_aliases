@@ -1,5 +1,6 @@
 # Common used
 alias o="xdg-open"
+alias diff="colordiff"
 
 # l10n support
 alias unzip="unzip -O CP936"
