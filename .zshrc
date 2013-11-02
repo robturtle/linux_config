@@ -22,9 +22,6 @@ fi
 #######################################################
 # All about auto completion
 #######################################################
-# My functions (don't forget to modify fpath before call compinit !!)
-fpath=($HOME/.zsh/functions $fpath)
-
 # The following lines were added by compinstall
 autoload -U  zutil
 autoload -Uz compinit
