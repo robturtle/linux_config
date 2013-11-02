@@ -1,0 +1,39 @@
+# enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias lm='ls -al | more'
+# do a du -hs on each dir on current path
+alias lsdir="for dir in *;do;if [ -d \$dir ];then;du -hsL \$dir;fi;done"
+# check disk usage
+alias mydf="df -hPT | column -t"
+
+# watch out
+alias rm="rm -i"
+alias cp="cp -i"
+
+# Common used
+alias o="xdg-open"
+alias diff="colordiff"
+
+# l10n support
+alias unzip="unzip -O CP936"
+
+# Compile commands for YouCompleteMe
+alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
+
+# MC
+if [ -x /usr/libexec/mc/mc-wrapper.sh ]
+then
+	alias mc='. /usr/libexec/mc/mc-wrapper.sh'
+fi

@@ -1,0 +1,20 @@
+setopt CORRECT
+setopt ALWAYS_TO_END
+setopt NOTIFY
+setopt NOBEEP
+setopt AUTOLIST
+setopt AUTOCD
+setopt PRINT_EIGHT_BIT
+
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt appendhistory autocd extendedglob notify
+unsetopt beep
+bindkey -e
+# End of lines configured by zsh-newuser-install
+
+# Disable Ctrl-s suspend function
+stty ixany
+stty ixoff -ixon

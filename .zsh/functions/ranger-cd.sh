@@ -1,15 +1,4 @@
-# Common used
-alias o="xdg-open"
-alias diff="colordiff"
-
-# l10n support
-alias unzip="unzip -O CP936"
-
-# Compile commands for YouCompleteMe
-alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
-
 ### Ranger facilities
-
 # Compatible with ranger 1.4.2 through 1.6.*
 #
 # Automatically change the directory in bash after closing ranger
@@ -27,5 +16,4 @@ function ranger-cd {
     fi
     rm -f -- "$tempfile"
 }
-
 alias d="ranger-cd"
