@@ -21,6 +21,7 @@ alias mydf="df -hPT | column -t"
 # watch out
 alias rm="rm -i"
 alias cp="cp -i"
+alias addx="chmod +x"
 
 # Common used
 alias o="xdg-open"
