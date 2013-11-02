@@ -159,7 +159,7 @@ map j gj
 map k gk
 
 " Disable hightlight when <leader><cr> is pressed
-map <silent> <leader><space> :noh<cr>
+map <silent> <leader><space> :noh<cr>:pc<cr>
 
 " Smart way to move between windows
 map <C-j> <C-W>j
@@ -173,7 +173,7 @@ map tl <C-Pagedown>
 " Opens a new tab
 map <c-t> :tabnew<cr>
 " Open a file under the same directory"
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Move current tab to right position
 map <leader>tm :tabmove<cr>
 
@@ -211,7 +211,7 @@ set laststatus=2
 let g:Powerline_symbols = 'unicode'
 
 " Format the status line
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ %p%%\ \ %{fugitive#statusline()}
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ %y\ \ CWD:\ %r%{getcwd()}%h\ \ %p%%\ \ %{fugitive#statusline()}
 "set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 """""""""""""""""""""""""""""""""""
@@ -271,15 +271,17 @@ map <leader>s? z=
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+map <leader>pp :setlocal paste!<cr>:set nu!<cr>
 
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/Snippets/my.snippets<cr>
+" add entry for snippets for current filetype, otherwise my.snippets
+nmap <leader>tf :tabedit ~/Snippets/Mine/<c-r>=&ft<cr>.snippets
 " Entry to my .vimrc
 nmap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
 
 " fast map of c-x,c-f
-imap <c-i> <c-x><c-f>
+imap <leader>r <c-x><c-f>
 
 " fast map of :cd
 nmap cd :cd 
@@ -411,8 +413,11 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Do not ask when starting vim
 let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
-let g:ycm_collect_identifiers_from_tags_files = 1
-set tags+=./.tags
+"let g:ycm_collect_identifiers_from_tags_files = 1
+"set tags+=./.tags
+" Debug 
+"let g:ycm_server_use_vim_stdout = 1
+"let g:ycm_server_log_level = 'debug'
 
 """"""" c/c++ jump support
 " header/source jump
@@ -460,11 +465,6 @@ let g:UltiSnipsExpandTrigger = '<c-j>'
 Bundle 'robturtle/USsnippets'
 
 " Move around
-Bundle 'Lokaltog/vim-easymotion'
-" Flowy simulation
-"Bundle 'laoyang945/vimflowy'
-" Chinese input method
-"Bundle 'vimim/vimim'
 " Move around
 Bundle 'Lokaltog/vim-easymotion'
 " Flowy simulation
