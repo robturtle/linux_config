@@ -129,11 +129,6 @@ set nobackup
 set nowb
 set noswapfile
 
-" CMakeLists.txt as cmake type
-au BufRead,BufNewFile CMakeLists.txt        set filetype=cmake
-" Add *.txt to text filetype
-au BufRead,BufNewFile *.txt        setfiletype text
-
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""
@@ -241,7 +236,7 @@ vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
 " Do :help cope if you are unsure what cope is. It's super useful!
 "
 " When you search with vimgrep, display your results in cope by doing:
-"   <leader>q
+"   <leader>q provided by ListToggle
 "
 " To go to the next search result do:
 "   <leader>n
@@ -260,10 +255,10 @@ map <leader>p :cp<cr>
 map <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
-map <leader>sn ]s
-map <leader>sp [s
-map <leader>sa zg
-map <leader>s? z=
+"  ]s next word
+"  [s previous word
+"  zg ignore this error
+"  z= suggestion
 
 """""""""""""""""""""""""""""""""""
 " => Misc
@@ -275,7 +270,7 @@ map <leader>pp :setlocal paste!<cr>:set nu!<cr>
 
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/Snippets/my.snippets<cr>
-" add entry for snippets for current filetype, otherwise my.snippets
+" add entry for snippets for current filetype
 nmap <leader>tf :tabedit ~/Snippets/Mine/<c-r>=&ft<cr>.snippets
 " Entry to my .vimrc
 nmap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
@@ -413,11 +408,6 @@ nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Do not ask when starting vim
 let g:ycm_confirm_extra_conf = 0
 let g:syntastic_always_populate_loc_list = 1
-"let g:ycm_collect_identifiers_from_tags_files = 1
-"set tags+=./.tags
-" Debug 
-"let g:ycm_server_use_vim_stdout = 1
-"let g:ycm_server_log_level = 'debug'
 
 """"""" c/c++ jump support
 " header/source jump
@@ -433,13 +423,14 @@ Bundle 'scrooloose/nerdcommenter'
 """"""""""""""""""""""""""
 " File finder
 """"""""""""""""""""""""""
-"Bundle 'wincent/Command-T'
 Bundle 'kien/ctrlp.vim'
 " Ctrlp.vim
 " I have many symlinks to git repos
 let g:ctrlp_follow_symlinks = 1
 " Sometimes I wanna open hidden files
 let g:ctrlp_show_hidden = 1
+" Symlinks may disturb my working on git
+let g:ctrlp_switch_buffer = 0
 
 """"""""""""""""""""""""""
 " Misc
@@ -461,10 +452,9 @@ vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 Bundle 'UltiSnips'
 " UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = '<c-j>'
-" vim-scripts repos
+" My own snippets
 Bundle 'robturtle/USsnippets'
 
-" Move around
 " Move around
 Bundle 'Lokaltog/vim-easymotion'
 " Flowy simulation
@@ -542,8 +532,6 @@ Bundle 'pangloss/vim-javascript'
 " TODO Which one is better?
 Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
 Bundle 'robturtle/zencoding-vim'
-" vim-scripts repos
-Bundle 'robturtle/USsnippets'
 
 filetype plugin indent on " required
 syntax on
