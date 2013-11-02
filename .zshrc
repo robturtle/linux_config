@@ -125,3 +125,8 @@ PS1=$'$C_L_BLUE%(1j.[$myjobs]% $C_OFF .$C_OFF)%m.%B%n%b$C_OFF$C_L_RED%#$C_OFF'
 # Disable Ctrl-s suspend function
 stty ixany
 stty ixoff -ixon
+
+# Set HTTP Proxy
+# I use goagent in my local machine as proxy
+export http_proxy="127.0.0.1:8087"
+export RSYNC_PROXY="127.0.0.1:8087"
