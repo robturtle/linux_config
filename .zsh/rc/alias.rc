@@ -38,3 +38,12 @@ if [ -x /usr/libexec/mc/mc-wrapper.sh ]
 then
 	alias mc='. /usr/libexec/mc/mc-wrapper.sh'
 fi
+
+# My raspberry pi ssh auto login
+if [ "$USER" = "root" ]; then
+    piuser="root"
+else
+    piuser="pi"
+fi
+mypi_ip='192.168.1.150'
+alias sshmypi="ssh $piuser@$mypi_ip"
