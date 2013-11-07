@@ -23,6 +23,12 @@ set_prompt() {
     myjobs=${(j:,:)myjobs}
     ((MAXMID=$COLUMNS / 2)) # truncate to this value
     RPS1="$RPSL$C_L_GREEN%$MAXMID;$mypath$RPSR"
+
+    # Let PS1 show the pushd directory stack
+    dir_stack=$(dirs)
+    remain_stack=${dir_stack#* }
+    test_stack=$(eval "echo $remain_stack") # expand the tilde to home path
+    test "$test_stack" = "$(pwd)" && mystack="" || mystack="[$remain_stack]"
     rehash
 }
 
@@ -40,6 +46,10 @@ precmd()  {
 }
 
 #PS1=$'$C_L_BLUE%(1j.[$myjobs]% $C_OFF .$C_OFF)%m.%B%n%b$C_OFF$C_L_RED%#$C_OFF'
-PROMPT=$'%{%}%B[ %b%{%}%{%}$C_L_YELLOW%n%{%}$C_OFF@$C_L_MAGENTA%{%}%{%}%m%{%}$C_OFF %B]%b%{%} - %b%{%}%B[ %b%{%}$C_L_GREEN%~%{%}$C_OFF%B ]%b%{%} - %{%}%B[ %b%{%}%D{%a %d, %H:%M}%b%{%}%B%{%}%B ]%b%{%}
-%{%}%B%%> %{%}%b'
+PROMPT=$'
+%{%}%B[ %b%{%}%{%}$C_L_YELLOW%n%{%}$C_OFF@$C_L_MAGENTA%{%}%{%}%m%{%}$C_OFF %B]%b%{%} - %b%{%}%B[ %b%{%}$C_L_GREEN%~%{%}$C_OFF%B ]%b%{%} - %{%}%B[ %b%{%}%D{%a %d, %H:%M}%b%{%}%B%{%}%B ]%b%{%}
+$C_L_BLUE%(1j.[$myjobs]% $C_OFF .$C_OFF)$mystack%{%}%B%%> %{%}%b'
 # End of colored prompt
+
+alias pushd='pushd >/dev/null'
+alias popd='popd >/dev/null'
