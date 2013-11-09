@@ -1,0 +1,5 @@
+"xdotool key --delay 300 control+F12 mousemove 300 300 click 1 mousemove restore"
+  F10
+
+"xdotool mousemove 1130 55 click 1 mousemove restore"
+  F2
