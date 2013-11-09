@@ -93,7 +93,9 @@ set novisualbell
 set t_vb=
 set tm=500
 " Set line's number
-set nu
+set relativenumber
+au InsertEnter * set nu
+au InsertLeave * set relativenumber
 
 """""""""""""""""""""""""""""""""""
 " => Colors and Fonts
