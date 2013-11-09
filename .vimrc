@@ -48,8 +48,6 @@ let g:mapleader = ","
 " Fast saving/quiting
 nmap <leader>w :w!<cr>
 nmap <leader>x :q<cr>
-" Default path
-set path+=.,..,/usr/include/,~/projects/include
 
 """""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -269,11 +267,11 @@ noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 map <leader>pp :setlocal paste!<cr>:set nu!<cr>
 
 " Entry to temporary snippets
-nmap <leader>ts :tabedit ~/Snippets/my.snippets<cr>
+nmap <leader>ts :tabedit /home/jeremy/Snippets/my.snippets<cr>
 " add entry for snippets for current filetype
-nmap <leader>tf :tabedit ~/Snippets/Mine/<c-r>=&ft<cr>.snippets
+nmap <leader>tf :tabedit /home/jeremy/Snippets/Mine/<c-r>=&ft<cr>.snippets
 " Entry to my .vimrc
-nmap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
+nmap <leader><leader>v :tabedit /home/jeremy/git/linux_config/.vimrc<cr>
 
 " fast map of c-x,c-f
 imap <leader>r <c-x><c-f>
@@ -509,7 +507,7 @@ Bundle 'altercation/vim-colors-solarized'
 "au Syntax * RainbowParenthesesLoadSquare
 "au Syntax * RainbowParenthesesLoadBraces
 
-Bundle 'Yggdroot/indentLine'
+"Bundle 'Yggdroot/indentLine'
 " indentLine
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 0
@@ -525,6 +523,8 @@ Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-liquid'
 Bundle 'python.vim'
 Bundle 'pangloss/vim-javascript'
+Bundle 'thiderman/nginx-vim-syntax'
+Bundle 'php.vim--Garvin'
 
 " Html writer
 """"""""""""""""""""""""""
@@ -532,6 +532,7 @@ Bundle 'pangloss/vim-javascript'
 " TODO Which one is better?
 Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
 Bundle 'robturtle/zencoding-vim'
+let g:user_zen_leader_key = '<c-h>'
 
 filetype plugin indent on " required
 syntax on
