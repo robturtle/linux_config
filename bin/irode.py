@@ -12,7 +12,7 @@ import time
 from decimal import Decimal
 
 RECORD_FNAME = "/home/jeremy/Blogs/2013-11-01-Riding-records.md"
-DST_LAKE_KM  = 28.7
+DST_LAKE_KM  = 28.5
 PRECISION    = Decimal('0.1')
 
 def main():
@@ -25,13 +25,16 @@ def main():
 
     max_speed = raw_input("Max speed is: ")
 
+    remark = raw_input("Remark:")
+
     date = time.strftime("%Y-%m-%d")
 
     record_row = (
             date +' | '+
             str(time_min) +'min | '+
             str(Decimal(max_speed).quantize(PRECISION)) +'km/h | '+
-            str(Decimal(avr_speed).quantize(PRECISION)) +'km/h'
+            str(Decimal(avr_speed).quantize(PRECISION)) +'km/h | '+
+            remark +'\n'
     )
 
     print("Generate record:")
