@@ -266,7 +266,7 @@ map <leader>ss :setlocal spell!<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>:set nu!<cr>
+map <leader>pp :setlocal paste!<cr>:set norelativenumber<cr>
 
 " Entry to temporary snippets
 nmap <leader>ts :tabedit /home/jeremy/Snippets/my.snippets<cr>
