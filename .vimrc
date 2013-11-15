@@ -474,6 +474,13 @@ nmap wm :WMToggle<cr>
 Bundle 'tpope/vim-surround'
 " Auto complete brackets
 Bundle 'Raimondi/delimitMate'
+" Embedded shell
+Bundle 'Shougo/vimshell.vim'
+nmap <leader>sh :VimShellTab<cr>
+nmap <leader>sp :VimShellPop<cr>
+Bundle 'Shougo/vimproc'
+" Similar with ctrl-p
+Bundle 'Shougo/unite.vim'
 """"""""""""""""""""""""""
 " End of Misc
 """"""""""""""""""""""""""
