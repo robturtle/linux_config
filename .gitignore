@@ -1,3 +1,5 @@
 bin/newycm_extra_conf.py
 bin/newcmakebuildall.py
 Templates/ycm.*.py
+.local/
+.config/google-chrome/

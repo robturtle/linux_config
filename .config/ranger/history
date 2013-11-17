@@ -1,0 +1,36 @@
+open_with 0
+open_with 1
+shell cp ycm.cpp.py ycm.cpp.qt.py
+shell touch ycm.cpp.opencv.py
+search je
+search je*
+delete y
+search cmake
+search deteremine
+search Determine
+search qt
+search opencv
+search Open
+rename goagent-3.0.5
+open_with vi
+rename testcase.md
+rename 2013-11-02-Linux-compile-options-Hasee-A550.md
+rename timetracker.desktop
+open_with 
+shell file qtest
+shell -w file qtest
+open_with google-chrome
+relink CTestConfig.cmake
+rename CTestTestfile.cmake
+rename CTestConfig.cmake
+search 
+search head
+search sh.
+search boost
+search Boost
+search coverage
+shell sudo rm Release-2-0-2 -rf
+open_with vim
+search nginx
+shell mkdir future
+delete 
