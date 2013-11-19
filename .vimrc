@@ -129,6 +129,9 @@ set nobackup
 set nowb
 set noswapfile
 
+" Set filetype for .zsh/rc/*.rc
+au BufRead,BufNewFile */.zsh/rc/*.rc set ft=zsh
+
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""
@@ -534,6 +537,7 @@ Bundle 'python.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'php.vim--Garvin'
+Bundle 'eagletmt/ghcmod-vim'
 
 " Html writer
 """"""""""""""""""""""""""
