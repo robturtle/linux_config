@@ -26,8 +26,6 @@
 "	-> Misc
 "	-> Helper functions
 "	-> Plugins configurations
-"	-> C/C++ compiling, debugging related
-"	-> vimrc facilities
 "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 """""""""""""""""""""""""""""""""""
@@ -299,6 +297,11 @@ endfunc
 imap <c-f> <Esc>:call Append()<cr>
 imap <c-b> <Esc>:startinsert<cr>
 
+" System clipboard relative
+nmap <C-y> "+y
+" Paste using system default way <c-m-v>
+"nmap <C-v> "+p 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -538,6 +541,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'php.vim--Garvin'
 Bundle 'eagletmt/ghcmod-vim'
+Bundle 'eagletmt/neco-ghc'
 
 " Html writer
 """"""""""""""""""""""""""
