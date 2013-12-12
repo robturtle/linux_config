@@ -1,7 +1,7 @@
 "xdotool key --delay 300 control+F12 sleep 2 mousemove 300 300 click 1 mousemove restore"
   F10
 
-"xdotool mousemove 1070 70 click 1 mousemove restore"
+"xdotool mousemove 1043 696 click 1 mousemove restore"
   F7
 
 "echo $(pwd)>/tmp/.yakuake_pwd && xdotool search yakuake key control+shift+9 search yakuake type --delay 0 'cd $(cat /tmp/.yakuake_pwd)' && xdotool search yakuake key --delay 0 Return"
