@@ -11,12 +11,6 @@ fi
 # colors
 eval $(dircolors)
 
-# Put your fun stuff here.
-# export ~/bin to PATH
-if [ -d ${HOME}/bin ] ; then
-	export PATH="${HOME}/bin:${PATH}"
-fi
-
 # End of lines imported from .bashrc
 
 #######################################################

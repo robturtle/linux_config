@@ -28,6 +28,7 @@ alias o="xdg-open"
 alias diff="colordiff"
 
 # l10n support
+alias zip="zip -r"
 alias unzip="unzip -O CP936"
 
 # Compile commands for YouCompleteMe
