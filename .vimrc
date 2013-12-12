@@ -45,7 +45,6 @@ let mapleader = ","
 let g:mapleader = ","
 " Fast saving/quiting
 nmap <leader>w :w!<cr>
-nmap <leader>x :q<cr>
 
 """""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -129,6 +128,8 @@ set noswapfile
 
 " Set filetype for .zsh/rc/*.rc
 au BufRead,BufNewFile */.zsh/rc/*.rc set ft=zsh
+au BufRead,BufNewFile *.h++ set ft=cpp
+au BufRead,BufNewFile *.c++ set ft=cpp
 
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -301,6 +302,12 @@ imap <c-b> <Esc>:startinsert<cr>
 nmap <C-y> "+y
 " Paste using system default way <c-m-v>
 "nmap <C-v> "+p 
+
+" Test
+" TODO make a function, support more filetype
+" TODO built-in makefile support use command make
+nmap <F4> :!clang++ -std=c++11 -g -O0 -Wall -o %:r.elf<cr>:!gdb ./%:r.elf
+nmap <F5> :!clang++ -std=c++11 % -o %:r.elf<cr>:!./%:r.elf < %:r.in<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -487,6 +494,8 @@ nmap <leader>sp :VimShellPop<cr>
 Bundle 'Shougo/vimproc'
 " Similar with ctrl-p
 Bundle 'Shougo/unite.vim'
+" Calendar
+Bundle 'mattn/calendar-vim'
 """"""""""""""""""""""""""
 " End of Misc
 """"""""""""""""""""""""""
@@ -542,13 +551,15 @@ Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'php.vim--Garvin'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'eagletmt/neco-ghc'
+" enable auto-completion for Haskell using YCM
+au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
+au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
 
 " Html writer
 """"""""""""""""""""""""""
 "zen coding like plugin
-" TODO Which one is better?
-Bundle 'rstacruz/sparkup', {'rtp':'vim/'}
-Bundle 'robturtle/zencoding-vim'
+Bundle 'mattn/emmet-vim'
+" TODO change to emmet-vim leader key
 let g:user_zen_leader_key = '<c-h>'
 
 filetype plugin indent on " required
