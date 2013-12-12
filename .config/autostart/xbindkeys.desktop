@@ -1,5 +1,0 @@
-[Desktop Entry]
-Type=Application
-Terminal=false
-Exec=/usr/bin/xbindkeys
-Name=xbindkeys the AutoHotkey on Linux
