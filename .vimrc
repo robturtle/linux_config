@@ -91,8 +91,6 @@ set t_vb=
 set tm=500
 " Set line's number
 set relativenumber
-au InsertEnter * set nu
-au InsertLeave * set relativenumber
 
 """""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -554,6 +552,8 @@ Bundle 'eagletmt/neco-ghc'
 " enable auto-completion for Haskell using YCM
 au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
 au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
+" highlight for .xinitrc
+au BufRead,BufNewFile .xinitrc set ft=sh
 
 " Html writer
 """"""""""""""""""""""""""
