@@ -9,7 +9,7 @@
 # original directory. Ranger facility -- Auto cd to last dir
 function ranger-cd {
     tempfile='/tmp/chosendir'
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    /usr/bin/env ranger --choosedir="$tempfile" "${@:-$(pwd)}"
     test -f "$tempfile" &&
     if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
         cd -- "$(cat "$tempfile")"
@@ -35,3 +35,16 @@ function switch_proxy {
     fi
 }
 alias p="switch_proxy"
+
+# Scan all the text contents under the directory
+function scantext {
+    for i in `ls $1`; do
+        if [ -d "$i" ]; then
+            pushd "$i" >/dev/null
+            scandir
+            popd >/dev/null
+        elif [ -f "$i" ]; then
+            file "$i" | grep "text" >/dev/null && cat "$i"
+        fi
+    done
+}
