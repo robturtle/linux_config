@@ -9,7 +9,13 @@ if [[ $- != *i* ]] ; then
 fi
 
 # colors
-eval $(dircolors)
+if whence dircolors > /dev/null; then
+    eval "$(dircolors -b)"
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+else
+    export CLICOLOR=1
+    zstyle ':completion:*:default' list-colors ''
+fi
 
 # End of lines imported from .bashrc
 
