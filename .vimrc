@@ -57,9 +57,9 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.bin,#*#
 if has("win16") || has("win32")
-	set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
-	set wildignore+=.git\*,.hg\*,.svn\*
+set wildignore+=.git\*,.hg\*,.svn\*
 endif
 
 "Always show current position
@@ -90,6 +90,7 @@ set novisualbell
 set t_vb=
 set tm=500
 " Set line's number
+set nu!
 set relativenumber
 
 """""""""""""""""""""""""""""""""""
@@ -100,17 +101,17 @@ syntax enable
 set background=dark
 
 try
-	colorscheme desert
-    "colorscheme solarized
+colorscheme desert
+"colorscheme solarized
 catch
 endtry
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-    set guioptions-=T
-    set guioptions+=e
-    set t_Co=256
-    set guitablabel=%M\ %t
+set guioptions-=T
+set guioptions+=e
+set t_Co=256
+set guitablabel=%M\ %t
 endif
 
 " Use Unix as the standard file type
@@ -183,16 +184,16 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-	set switchbuf=useopen,usetab,newtab
-	set stal=2
+set switchbuf=useopen,usetab,newtab
+set stal=2
 catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-	\ if line("'\"") > 0 && line("'\"") <= line("$") |
-	\ exe "normal! g`\"" |
-	\ endif
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "normal! g`\"" |
+\ endif
 
 " Remember info about open buffers on close
 set viminfo^=%
@@ -214,9 +215,9 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ %y\ \ CWD:\ %r%{getcwd()}%h\ \ %p%%\
 """""""""""""""""""""""""""""""""""
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
-	exe "normal mz"
-	%s/\s\+$//ge
-	exe "normal `z"
+exe "normal mz"
+%s/\s\+$//ge
+exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
@@ -266,7 +267,7 @@ map <leader>ss :setlocal spell!<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>:set norelativenumber<cr>
+map <leader>pp :setlocal paste!<cr>:set norelativenumber<cr>:set nonu<cr>
 
 " Entry to temporary snippets
 nmap <leader>ts :tabedit /home/jeremy/Snippets/my.snippets<cr>
