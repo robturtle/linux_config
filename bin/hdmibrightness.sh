@@ -5,7 +5,9 @@
 # Contact Me:  JeremyRobturtle@gmail.com
 # Brief: Set brightness of HDMI monitor
 if [ -z "$1" ]; then
-    $1="0.4"
+    b="0.4"
+else
+    b=$1
 fi
 
-xrandr --output HDMI-0 --brightness $1
+xrandr --output HDMI-0 --brightness $b
