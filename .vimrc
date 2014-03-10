@@ -90,6 +90,7 @@ set novisualbell
 set t_vb=
 set tm=500
 " Set line's number
+set nu!
 set relativenumber
 
 """""""""""""""""""""""""""""""""""
@@ -100,7 +101,7 @@ syntax enable
 set background=dark
 
 try
-	colorscheme desert
+    colorscheme desert
     "colorscheme solarized
 catch
 endtry
@@ -266,14 +267,14 @@ map <leader>ss :setlocal spell!<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>:set norelativenumber<cr>
+map <leader>pp :setlocal paste!<cr>
 
 " Entry to temporary snippets
-nmap <leader>ts :tabedit /home/jeremy/Snippets/my.snippets<cr>
+nmap <leader>ts :tabedit ~/.vim/bundle/USsnippets/UltiSnips/all.snippets<cr>
 " add entry for snippets for current filetype
-nmap <leader>tf :tabedit /home/jeremy/Snippets/Mine/<c-r>=&ft<cr>.snippets
+nmap <leader>tf :tabedit ~/.vim/bundle/USsnippets/UltiSnips/<c-r>=&ft<cr>.snippets
 " Entry to my .vimrc
-nmap <leader><leader>v :tabedit /home/jeremy/git/linux_config/.vimrc<cr>
+nmap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
 
 " fast map of c-x,c-f
 imap <leader>r <c-x><c-f>
@@ -413,6 +414,7 @@ nmap gpu :Git push<cr>
 
 " YouCompleteMeeeeeee!!!!!!!!
 Bundle 'Valloric/YouCompleteMe'
+
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 "let g:ycm_global_ycm_extra_conf = '~/.ycm_extra_conf.py'
@@ -548,6 +550,7 @@ Bundle 'pangloss/vim-javascript'
 Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'php.vim--Garvin'
 Bundle 'eagletmt/ghcmod-vim'
+Bundle 'parkr/vim-jekyll'
 Bundle 'eagletmt/neco-ghc'
 " enable auto-completion for Haskell using YCM
 au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
@@ -560,7 +563,7 @@ au BufRead,BufNewFile .xinitrc set ft=sh
 "zen coding like plugin
 Bundle 'mattn/emmet-vim'
 " TODO change to emmet-vim leader key
-let g:user_zen_leader_key = '<c-h>'
+"let g:user_zen_leader_key = '<c-e>'
 
 filetype plugin indent on " required
 syntax on
