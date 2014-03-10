@@ -1,0 +1,13 @@
+XTerm*Background: black
+XTerm*Foreground: white
+XTerm*font: 9x15
+XTerm*saveLines: 1000
+
+UXTerm*Background: black
+UXTerm*Foreground: white
+!UXTerm*font: *-fixed-*-*-*-20-*
+UXTerm*saveLines: 1000
+! TrueType font
+UXTerm*faceName: DejaVu Sans Mono
+UXTerm*faceNameDoublesize: WenQuanYi Zen Hei
+UXTerm*faceSize: 10

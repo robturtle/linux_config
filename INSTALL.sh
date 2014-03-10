@@ -4,11 +4,23 @@
 # License:     LGPL v2.0+
 # Contact Me:  JeremyRobturtle@gmail.com
 # Brief: Make symlinks to your $HOME.
-ln -s $(pwd)/.zsh ~
-ln -s $(pwd)/.vimrc ~
-ln -s $(pwd)/.zshrc ~
-ln -s $(pwd)/bin ~
-ln -s $(pwd)/Templates ~
+for i in ".zsh" ".vimrc" ".zshrc" "bin" "Templates" ".Xdefaults" ".Xmodmap" ".gitconfig" \
+         ".xbindkeysrc" ".xinitrc" ".xprofile"; do
+    if [ -f "$i" ] || [ -d "$i" ]; then
+        echo "$i already existed. Not installed..."
+    else
+        echo "Install $i into ${HOME}"
+        ln -s $(pwd)/"$i" ~
+    fi
+done
+
+QPdir="${HOME}/.config/fcitx/data"
+if [ -d "$QPdir" ]; then
+    echo "Install QuickPhrase.md into $QPdir"
+    ln -s QuickPhrase.mb "$QPdir"
+else
+    echo "fcitx configure folder not found. QuickPhrase.md not installed."
+fi
 
 # Install my keyboard layout to /etc/rc.local
 #echo "Install keyboard layout..."
@@ -16,8 +28,12 @@ ln -s $(pwd)/Templates ~
 
 is_gentoo=$(uname -a | grep "gentoo")
 if [ "$is_gentoo" ]; then
+    echo "Install keymap under CLI (CapsLock as Control) ..."
     sudo cp 0kmap.start /etc/local.d/
     sudo chmod +x /etc/local.d/0kmap.start
 else
-    echo "Do it yourself"
+    echo "Not gentoo. Please install key map manually."
+    echo "For instance, in ubuntu, you can add this line into"
+    echo "/etc/rc.local:"
+    echo "    /usr/bin/env loadkeys /usr/share/jeremy.kmap"
 fi

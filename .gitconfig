@@ -1,0 +1,11 @@
+[user]
+	name  = LIU Yang
+	email = JeremyRobturtle@gmail.com
+
+[format]
+	pretty = oneline
+
+[color]
+	ui = true
+[push]
+	default = matching
