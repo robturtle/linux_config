@@ -10,7 +10,9 @@ test -f "$cache" && src=`cat "$cache"`
 test -n "$1"     && src="$1"
 test -z "$src" && echo "Jekyll source path not given! Aborting..." && exit
 # update cache
-if [ "$src" != $(cat "$cache") ]; then
+test -d "$HOME/.cache" || mkdir -p "$HOME/.cache"
+test -f "$cache" || touch "$cache"
+if [ "$src" != "$(cat "$cache")" ]; then
 	echo "$src" > "$cache"
 fi
 

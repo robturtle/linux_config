@@ -11,8 +11,8 @@ ln -s $(pwd)/bin ~
 ln -s $(pwd)/Templates ~
 
 # Install my keyboard layout to /etc/rc.local
-echo "Install keyboard layout..."
-sudo cp jeremy.kmap /usr/share
+#echo "Install keyboard layout..."
+#sudo cp jeremy.kmap /usr/share
 
 is_gentoo=$(uname -a | grep "gentoo")
 if [ "$is_gentoo" ]; then
