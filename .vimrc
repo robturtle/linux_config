@@ -90,7 +90,7 @@ set novisualbell
 set t_vb=
 set tm=500
 " Set line's number
-set nu!
+set nu
 set relativenumber
 
 """""""""""""""""""""""""""""""""""
@@ -267,7 +267,7 @@ map <leader>ss :setlocal spell!<cr>
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>:set norelativenumber<cr>:set nonu<cr>
+map <leader>pp :setlocal paste!<cr>:set relativenumber!<cr>:set nu!<cr>
 
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/.vim/bundle/USsnippets/UltiSnips/all.snippets<cr>
