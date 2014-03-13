@@ -35,8 +35,6 @@
 set encoding=utf8
 " Sets how many lines of history VIM has to remember
 set history=700
-" Enable filetype plugins
-filetype plugin indent on
 " Set to auto read when a file is changed from the outside
 set autoread
 " With a map leader it's possible to do extra key combinations
@@ -120,20 +118,25 @@ set ffs=unix,dos,mac
 """""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""
+filetype plugin indent off
 " Turn backup off, since most stuff is in SVN, git etc anyway
 set nobackup
 set nowb
 set noswapfile
 
 " Set filetype for .zsh/rc/*.rc
-au BufRead,BufNewFile */.zsh/rc/*.rc set ft=zsh
-au BufRead,BufNewFile *.h++ set ft=cpp
-au BufRead,BufNewFile *.c++ set ft=cpp
+au BufRead,BufNewFile */.zsh/rc/*.rc setf zsh
+au BufRead,BufNewFile *.h++ setf cpp
+au BufRead,BufNewFile *.c++ setf cpp
+" highlight for .xinitrc
+au BufRead,BufNewFile .xinitrc setf sh
+
+" Enable filetype plugins
+filetype plugin indent on
 
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
 """""""""""""""""""""""""""""""""""
-
 " Be smart when using tabs ;)
 set smarttab
 " 1 tab == 4 spaces
@@ -536,6 +539,9 @@ Bundle 'altercation/vim-colors-solarized'
 let g:indentLine_noConcealCursor = 1
 let g:indentLine_color_term = 0
 let g:indentLine_char = '|'
+
+"Write/post blog
+Bundle 'parkr/vim-jekyll'
 """"""""""""""""""""""""""
 " End of Color
 """"""""""""""""""""""""""
@@ -543,20 +549,18 @@ let g:indentLine_char = '|'
 """"""""""""""""""""""""""
 " Filetype support
 """"""""""""""""""""""""""
-Bundle 'plasticboy/vim-markdown'
+"Bundle 'plasticboy/vim-markdown'
 Bundle 'tpope/vim-liquid'
+"Bundle 'PProvost/vim-markdown-jekyll'
 Bundle 'python.vim'
 Bundle 'pangloss/vim-javascript'
 Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'php.vim--Garvin'
 Bundle 'eagletmt/ghcmod-vim'
-Bundle 'parkr/vim-jekyll'
 Bundle 'eagletmt/neco-ghc'
 " enable auto-completion for Haskell using YCM
 au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
 au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
-" highlight for .xinitrc
-au BufRead,BufNewFile .xinitrc set ft=sh
 
 " Html writer
 """"""""""""""""""""""""""
