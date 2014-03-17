@@ -271,6 +271,9 @@ map <leader>ss :setlocal spell!<cr>
 noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>:set relativenumber!<cr>:set nu!<cr>
+" Copy to/Paste from pasteboard
+vmap <leader>y "*y
+imap <leader><leader>v <c-r>*
 
 " Entry to temporary snippets
 nmap <leader>ts :tabedit ~/.vim/bundle/USsnippets/UltiSnips/all.snippets<cr>
@@ -554,19 +557,18 @@ Bundle 'tpope/vim-liquid'
 "Bundle 'PProvost/vim-markdown-jekyll'
 Bundle 'python.vim'
 Bundle 'pangloss/vim-javascript'
-Bundle 'thiderman/nginx-vim-syntax'
 Bundle 'php.vim--Garvin'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'eagletmt/neco-ghc'
 " enable auto-completion for Haskell using YCM
 au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
 au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
+Bundle 'greyblake/vim-preview'
 
 " Html writer
 """"""""""""""""""""""""""
 "zen coding like plugin
 Bundle 'mattn/emmet-vim'
-" TODO change to emmet-vim leader key
 "let g:user_zen_leader_key = '<c-e>'
 
 filetype plugin indent on " required
