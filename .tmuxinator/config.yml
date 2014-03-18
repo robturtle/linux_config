@@ -1,0 +1,33 @@
+# ~/.tmuxinator/SysAdmin.yml
+
+name: config
+root: ~/
+
+# Optional tmux socket
+# socket_name: foo
+
+# Runs before everything. Use it to start daemons etc.
+# pre: sudo /etc/rc.d/mysqld start
+
+# Runs in each window and pane before window/pane specific commands. Useful for setting up interpreter versions.
+# pre_window: rbenv shell 2.0.0-p247
+
+# Pass command line options to tmux. Useful for specifying a different tmux.conf.
+# tmux_options: -f ~/.tmux.mac.conf
+
+# Change the command to call tmux.  This can be used by derivatives/wrappers like byobu.
+# tmux_command: byobu
+
+windows:
+  - Zshrc: cd ~/git/linux_config && vim -p .zshrc .zsh/rc/*.rc
+  - Vimrc:
+      layout: even-horizontal
+      panes:
+        - cd ~/git/linux_config && vim .vimrc
+        - cd
+  - Tmux:
+      layout: even-horizontal
+      panes:
+        - cd ~/git/linux_config && vim .tmux.conf
+        - cd ~/git/linux_config/.tmuxinator && vim -p *.yml
+  - cmake-vim: cd ~/git/cmake.vim && vim -p plugin/cmake.vim autoload/cmake/*.vim
