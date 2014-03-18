@@ -37,6 +37,7 @@ RPSR=$'$C_OFF$C_L_RED%(0?.$C_L_GREEN. (%?%))$C_OFF'
 RPS2='%^'
 
 # load prompt functions
+# TODO set rprompt to git info
 setopt promptsubst
 unsetopt transient_rprompt # leave the pwd
 

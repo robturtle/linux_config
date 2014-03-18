@@ -51,3 +51,4 @@ alias sshmypi="ssh $piuser@$mypi_ip"
 
 # Let me fast focus on my terminal on desktop
 alias desktop='xdotool key --delay 300 ctrl+F12 mousemove 300 300 click 1 mousemove restore'
+
