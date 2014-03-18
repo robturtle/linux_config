@@ -42,7 +42,7 @@ set autoread
 let mapleader = ","
 let g:mapleader = ","
 " Fast saving/quiting
-nmap <leader>w :w!<cr>
+nnoremap <leader>w :w!<cr>
 
 """""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -154,35 +154,35 @@ set wrap "Wrap lines
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""
 " Treat long lines as break lines (useful when moving around in them!)
-map j gj
-map k gk
+nnoremap j gj
+nnoremap k gk
 
 " Disable hightlight when <leader><cr> is pressed
-map <silent> <leader><space> :noh<cr>:pc<cr>
+nnoremap <silent> <leader><space> :noh<cr>:pc<cr>
 
 " Smart way to move between windows
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+nnoremap <C-j> <C-W>j
+nnoremap <C-k> <C-W>k
+nnoremap <C-h> <C-W>h
+nnoremap <C-l> <C-W>l
 
 " Move around split windows
-map th <C-Pageup>
-map tl <C-Pagedown>
+nnoremap th <C-Pageup>
+nnoremap tl <C-Pagedown>
 " Opens a new tab
-map <c-t> :tabnew<cr>
+nnoremap <c-t> :tabnew<cr>
 " Open a file under the same directory"
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Move current tab to right position
-map <leader>tm :tabmove<cr>
+nnoremap <leader>tm :tabmove<cr>
 
 " Close current buffers
-map <leader>bc :Bclose<cr>
+nnoremap <leader>bc :Bclose<cr>
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+nnoremap <leader>ba :1,1000 bd!<cr>
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 
 " Specify the behavior when switching between buffers
@@ -232,7 +232,7 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 vnoremap <silent>gv :call VisualSelection('gv', '')<CR><cr>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.*<left><left><left><left><left><left><left><left>
+nnoremap <leader>g :vimgrep // **/*.*<left><left><left><left><left><left><left><left>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
@@ -248,15 +248,15 @@ vnoremap <silent><leader>r :call VisualSelection('replace', '')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+nnoremap <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+nnoremap <leader>n :cn<cr>
+nnoremap <leader>p :cp<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and toggle spell checking
-map <leader>ss :setlocal spell!<cr>
+nnoremap <leader>ss :setlocal spell!<cr>
 
 " Shortcuts using <leader>
 "  ]s next word
@@ -267,27 +267,22 @@ map <leader>ss :setlocal spell!<cr>
 """""""""""""""""""""""""""""""""""
 " => Misc
 """""""""""""""""""""""""""""""""""
-" Remove the Windows ^M - when the encodings gets messed up
-noremap <leader>m mmHmt:%S/<C-V><cr>//ge<cr>'tzt'm
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>:set relativenumber!<cr>:set nu!<cr>
-" Copy to/Paste from pasteboard
-vmap <leader>y "*y
-imap <leader><leader>v <c-r>*
+nnoremap <leader>pp :setlocal paste!<cr>:set relativenumber!<cr>:set nu!<cr>
 
 " Entry to temporary snippets
-nmap <leader>ts :tabedit ~/.vim/bundle/USsnippets/UltiSnips/all.snippets<cr>
+nnoremap <leader>ts :tabedit ~/.vim/bundle/USsnippets/UltiSnips/all.snippets<cr>
 " add entry for snippets for current filetype
-nmap <leader>tf :tabedit ~/.vim/bundle/USsnippets/UltiSnips/<c-r>=&ft<cr>.snippets
+nnoremap <leader>tf :tabedit ~/.vim/bundle/USsnippets/UltiSnips/<c-r>=&ft<cr>.snippets
 " Entry to my .vimrc
-nmap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
+nnoremap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
 
 " fast map of c-x,c-f
-imap <leader>r <c-x><c-f>
+inoremap <leader>r <c-x><c-f>
 
 " fast map of :cd
-nmap cd :cd 
-nmap cm :!cmake
+nnoremap cd :cd 
+nnoremap cm :!cmake
 
 " Emacs like movement in insert mode"
 func! Append()
@@ -300,19 +295,11 @@ func! Append()
     endif
 endfunc
 
-imap <c-f> <Esc>:call Append()<cr>
-imap <c-b> <Esc>:startinsert<cr>
+inoremap <c-f> <Esc>:call Append()<cr>
+inoremap <c-b> <Esc>:startinsert<cr>
 
 " System clipboard relative
-nmap <C-y> "+y
-" Paste using system default way <c-m-v>
-"nmap <C-v> "+p 
-
-" Test
-" TODO make a function, support more filetype
-" TODO built-in makefile support use command make
-nmap <F4> :!clang++ -std=c++11 -g -O0 -Wall -o %:r.elf<cr>:!gdb ./%:r.elf
-nmap <F5> :!clang++ -std=c++11 % -o %:r.elf<cr>:!./%:r.elf < %:r.in<cr>
+set clipboard^=unnamed
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -379,14 +366,15 @@ endfunction
 """""""""""""""""""""""""""""""""""
 " Use ranger as vim's file chooser
 fun! RangerChooser()
-    silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo -n . || dirname %)
+    "silent !ranger --choosefile=/tmp/chosenfile $([ -z '%' ] && echo $(pwd) || dirname %)
+    silent !ranger --choosefile=/tmp/chosenfile '%:p:h'
     if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
         call system('rm /tmp/chosenfile')
     endif
     redraw!
 endfun
-map <leader>e :call RangerChooser()<CR>
+nnoremap <leader>e :call RangerChooser()<CR>
 
 " Vundle
 " Brief help
@@ -414,9 +402,9 @@ Bundle 'Valloric/ListToggle'
 " git wrapper
 Bundle 'tpope/vim-fugitive'
 " fugitive the Git wrapper
-nmap gs :Gstatus<cr>
-nmap gl :Gllog<cr>
-nmap gpu :Git push<cr>
+nnoremap gs :Gstatus<cr>
+nnoremap gl :Gllog<cr>
+nnoremap gpu :Git push<cr>
 
 " YouCompleteMeeeeeee!!!!!!!!
 Bundle 'Valloric/YouCompleteMe'
@@ -434,7 +422,11 @@ Bundle 'a.vim'
 " Commenter
 Bundle 'scrooloose/nerdcommenter'
 
-"Bundle 'jalcine/cmake.vim' Is buggy right now
+" Try to debug it
+Bundle 'robturtle/cmake.vim' 
+let g:cmake_use_vimux = 1
+" Make and show compile error messages
+nnoremap <leader>m :silent make\|redraw!\|cc<CR>
 """"""""""""""""""""""""""
 " End of Programming
 """"""""""""""""""""""""""
@@ -464,6 +456,8 @@ Bundle 'Tabular'
 nnoremap <leader>f :Tabularize /=<cr>
 nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
+" Tmux integration
+Bundle 'benmills/vimux'
 
 """"""""""""""""""""""""""
 " Sniiiippets!!!
@@ -487,7 +481,7 @@ Bundle 'winmanager'
 let g:winManagerWindowLayout="FileExplorer,BufExplorer,TagList"
 let g:winManagerWidth=30
 let g:defaultExplorer=0
-nmap wm :WMToggle<cr>
+nnoremap wm :WMToggle<cr>
 
 " Modify surrounding tag/'/"/(/[, etc.
 Bundle 'tpope/vim-surround'
@@ -495,8 +489,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'Raimondi/delimitMate'
 " Embedded shell
 Bundle 'Shougo/vimshell.vim'
-nmap <leader>sh :VimShellTab<cr>
-nmap <leader>sp :VimShellPop<cr>
+nnoremap <leader>sh :VimShellTab<cr>
+nnoremap <leader>sp :VimShellPop<cr>
 Bundle 'Shougo/vimproc'
 " Similar with ctrl-p
 Bundle 'Shougo/unite.vim'
