@@ -1,4 +1,8 @@
 #!/bin/bash
+# Run the ctest command
+#   $1 is the build folder of CMake.
+#   The script will try on "build" "Debug" "Release" folder if $1
+#   is no given.
 test -e CMakeLists.txt || echo "Error: CMakeLists.txt not found at " $(pwd)
 test -e CMakeLists.txt || exit 1
 
