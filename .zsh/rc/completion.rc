@@ -18,3 +18,7 @@ zstyle ':completion:*:descriptions' format '%U%F{yellow}%d%f%u'
 zstyle ':completion:*' squeeze-slashes true
 zstyle ':completion:*' verbose true
 zstyle :compinstall filename '/home/jeremy/.zshrc'
+
+# tmuxinator
+completer="$HOME/repo/tmuxinator/completion/tmuxinator.zsh"
+test -f "$completer" && source "$completer"
