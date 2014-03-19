@@ -19,6 +19,7 @@ root: ~/
 # tmux_command: byobu
 
 windows:
+  - _: cd
   - Zshrc: cd ~/git/linux_config && vim -p .zshrc .zsh/rc/*.rc
   - Vimrc:
       layout: even-horizontal

@@ -19,5 +19,6 @@ root: ~/
 # tmux_command: byobu
 
 windows:
+  - _: cd
   - Jekyll: tracejekyll.sh
   - Wiki: cd ~/git/robturtle.github.io && vim -p _data/wiki.yml _includes/charpter.html pages/Platform/osx/index.html

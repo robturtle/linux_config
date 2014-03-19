@@ -19,4 +19,5 @@ root: ~/
 # tmux_command: byobu
 
 windows:
+  - _: cd
   - OpenCV_CMake: cd ~/gigo/cmake.vim.debug && vim
