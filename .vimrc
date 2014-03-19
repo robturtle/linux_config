@@ -38,10 +38,9 @@ set history=700
 " Set to auto read when a file is changed from the outside
 set autoread
 " With a map leader it's possible to do extra key combinations
-" like <leader>w saves the current file
 let mapleader = ","
 let g:mapleader = ","
-" Fast saving/quiting
+" Fast saving
 nnoremap <leader>w :w!<cr>
 
 """""""""""""""""""""""""""""""""""
@@ -256,7 +255,7 @@ nnoremap <leader>p :cp<cr>
 " => Spell checking
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Pressing ,ss will toggle and toggle spell checking
-nnoremap <leader>ss :setlocal spell!<cr>
+nnoremap <leader>sp :setlocal spell!<cr>
 
 " Shortcuts using <leader>
 "  ]s next word
@@ -274,8 +273,15 @@ nnoremap <leader>pp :setlocal paste!<cr>:set relativenumber!<cr>:set nu!<cr>
 nnoremap <leader>ts :tabedit ~/.vim/bundle/USsnippets/UltiSnips/all.snippets<cr>
 " add entry for snippets for current filetype
 nnoremap <leader>tf :tabedit ~/.vim/bundle/USsnippets/UltiSnips/<c-r>=&ft<cr>.snippets
+
+let g:myvimrc = "~/git/linux_config/.vimrc"
 " Entry to my .vimrc
-nnoremap <leader><leader>v :tabedit ~/git/linux_config/.vimrc<cr>
+nnoremap <leader><leader>v :silent exe "tabedit ".g:myvimrc<cr>
+" Refresh settings
+nnoremap <leader><leader>s :exe "source ".g:myvimrc<cr>
+
+" TODO wrap `tabedit` as func: if it's a empty buffer, open it directly
+"      then replace all `tabedit` cmd
 
 " fast map of c-x,c-f
 inoremap <leader>r <c-x><c-f>
@@ -487,10 +493,6 @@ nnoremap wm :WMToggle<cr>
 Bundle 'tpope/vim-surround'
 " Auto complete brackets
 Bundle 'Raimondi/delimitMate'
-" Embedded shell
-Bundle 'Shougo/vimshell.vim'
-nnoremap <leader>sh :VimShellTab<cr>
-nnoremap <leader>sp :VimShellPop<cr>
 Bundle 'Shougo/vimproc'
 " Similar with ctrl-p
 Bundle 'Shougo/unite.vim'
