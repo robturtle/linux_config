@@ -223,6 +223,8 @@ exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+" Fast type CMakeLists.txt in cmdline
+cabbrev CM CMakeLists.txt
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -464,6 +466,18 @@ nnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 " Tmux integration
 Bundle 'benmills/vimux'
+" Using this to run shell commands instead of `:!`
+map <Leader>vp :VimuxPromptCommand<CR>
+" Run last command executed by VimuxRunCommand
+map <Leader>vl :VimuxRunLastCommand<CR>
+" Inspect runner pane map
+map <Leader>vi :VimuxInspectRunner<CR>
+" Close vim tmux runner opened by VimuxRunCommand
+map <Leader>vq :VimuxCloseRunner<CR>
+" Interrupt any command running in the runner pane map
+map <Leader>vs :VimuxInterruptRunner<CR>
+" Zoom the tmux runner page
+map <Leader>vz :VimuxZoomRunner<CR>
 
 """"""""""""""""""""""""""
 " Sniiiippets!!!
