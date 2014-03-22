@@ -33,3 +33,6 @@ compinit
 for file in $HOME/.zsh/rc/*.rc; do
 	source $file
 done
+
+# Attach to tmux
+tmux has-session -t experimentation || tmuxinator start experimentation
