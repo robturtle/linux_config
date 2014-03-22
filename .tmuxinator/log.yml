@@ -20,5 +20,7 @@ root: ~/
 
 windows:
   - _: cd
-  - Jekyll: tracejekyll.sh
+  - Jekyll:
+      - tracejekyll.sh
+      - cd ~/git/robturtle.github.io
   - Wiki: cd ~/git/robturtle.github.io && vim -p _data/wiki.yml _includes/charpter.html pages/Platform/osx/index.html
