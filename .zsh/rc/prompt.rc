@@ -22,7 +22,7 @@ set_prompt() {
     }
     myjobs=${(j:,:)myjobs}
     ((MAXMID=$COLUMNS / 2)) # truncate to this value
-    RPS1="$RPSL$C_L_GREEN%$MAXMID;$mypath$RPSR"
+    RPS1="$RPSL$C_L_GREEN%$MAXMID;$BRANCH$RPSR"
 
     # Let PS1 show the pushd directory stack
     dir_stack=$(dirs)
@@ -34,6 +34,7 @@ set_prompt() {
 
 RPSL=$'$C_OFF'
 RPSR=$'$C_OFF$C_L_RED%(0?.$C_L_GREEN. (%?%))$C_OFF'
+BRANCH=$'$(git_get_branch.sh)'
 RPS2='%^'
 
 # load prompt functions
