@@ -54,9 +54,9 @@ set wildmenu
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc,*.bin,#*#
 if has("win16") || has("win32")
-set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
+    set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 else
-set wildignore+=.git\*,.hg\*,.svn\*
+    set wildignore+=.git\*,.hg\*,.svn\*
 endif
 
 "Always show current position
@@ -105,10 +105,10 @@ endtry
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-set guioptions-=T
-set guioptions+=e
-set t_Co=256
-set guitablabel=%M\ %t
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
 endif
 
 " Use Unix as the standard file type
@@ -186,16 +186,16 @@ nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Specify the behavior when switching between buffers
 try
-set switchbuf=useopen,usetab,newtab
-set stal=2
+    set switchbuf=useopen,usetab,newtab
+    set stal=2
 catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-\ if line("'\"") > 0 && line("'\"") <= line("$") |
-\ exe "normal! g`\"" |
-\ endif
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \ exe "normal! g`\"" |
+            \ endif
 
 " Remember info about open buffers on close
 set viminfo^=%
@@ -217,9 +217,9 @@ set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ %y\ \ CWD:\ %r%{getcwd()}%h\ \ %p%%\
 """""""""""""""""""""""""""""""""""
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
-exe "normal mz"
-%s/\s\+$//ge
-exe "normal `z"
+    exe "normal mz"
+    %s/\s\+$//ge
+    exe "normal `z"
 endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
@@ -355,17 +355,17 @@ function! <SID>BufcloseCloseIt()
     let l:alternateBufNum = bufnr("#")
 
     if buflisted(l:alternateBufNum)
-         buffer #
+        buffer #
     else
-         bnext
+        bnext
     endif
 
     if bufnr("%") == l:currentBufNum
-         new
+        new
     endif
 
     if buflisted(l:currentBufNum)
-         execute("bdelete! ".l:currentBufNum)
+        execute("bdelete! ".l:currentBufNum)
     endif
 endfunction
 
@@ -467,17 +467,20 @@ vnoremap <leader>df xP:Tabularize /<C-R>-<CR>
 " Tmux integration
 Bundle 'benmills/vimux'
 " Using this to run shell commands instead of `:!`
-map <Leader>vp :VimuxPromptCommand<CR>
+nnoremap <Leader>vp :VimuxPromptCommand<CR>
 " Run last command executed by VimuxRunCommand
-map <Leader>vl :VimuxRunLastCommand<CR>
+nnoremap <Leader>vl :VimuxRunLastCommand<CR>
 " Inspect runner pane map
-map <Leader>vi :VimuxInspectRunner<CR>
+nnoremap <Leader>vi :VimuxInspectRunner<CR>
 " Close vim tmux runner opened by VimuxRunCommand
-map <Leader>vq :VimuxCloseRunner<CR>
+nnoremap <Leader>vq :VimuxCloseRunner<CR>
 " Interrupt any command running in the runner pane map
-map <Leader>vs :VimuxInterruptRunner<CR>
+nnoremap <Leader>vs :VimuxInterruptRunner<CR>
 " Zoom the tmux runner page
-map <Leader>vz :VimuxZoomRunner<CR>
+nnoremap <Leader>vz :VimuxZoomRunner<CR>
+" Let tmux run execute the file according to filetype
+nnoremap <leader>vr :call VimuxRunCommand(b:runprg)<CR>
+" TODO set runprg and let <leader>vr use runprg
 
 """"""""""""""""""""""""""
 " Sniiiippets!!!
@@ -523,23 +526,23 @@ Bundle 'altercation/vim-colors-solarized'
 "Bundle 'kien/rainbow_parentheses.vim'
 " rainbow_parentheses
 "let g:rbpt_colorpairs = [
-    "\ ['brown', 'RoyalBlue3'],
-    "\ ['Darkblue', 'SeaGreen3'],
-    "\ ['Darkgray', 'DarkOrchid3'],
-    "\ ['darkgreen', 'firebrick3'],
-    "\ ['darkcyan', 'RoyalBlue3'],
-    "\ ['darkred', 'SeaGreen3'],
-    "\ ['darkmagenta', 'DarkOrchid3'],
-    "\ ['brown', 'firebrick3'],
-    "\ ['gray', 'RoyalBlue3'],
-    "\ ['black', 'SeaGreen3'],
-    "\ ['darkmagenta', 'DarkOrichd3'],
-    "\ ['Darkblue', 'firebrick3'],
-    "\ ['darkgreen', 'RoyalBlue3'],
-    "\ ['darkcyan', 'SeaGreen3'],
-    "\ ['darkred', 'DarkOrichid3'],
-    "\ ['red', 'firebrick3'],
-    "\ ]
+"\ ['brown', 'RoyalBlue3'],
+"\ ['Darkblue', 'SeaGreen3'],
+"\ ['Darkgray', 'DarkOrchid3'],
+"\ ['darkgreen', 'firebrick3'],
+"\ ['darkcyan', 'RoyalBlue3'],
+"\ ['darkred', 'SeaGreen3'],
+"\ ['darkmagenta', 'DarkOrchid3'],
+"\ ['brown', 'firebrick3'],
+"\ ['gray', 'RoyalBlue3'],
+"\ ['black', 'SeaGreen3'],
+"\ ['darkmagenta', 'DarkOrichd3'],
+"\ ['Darkblue', 'firebrick3'],
+"\ ['darkgreen', 'RoyalBlue3'],
+"\ ['darkcyan', 'SeaGreen3'],
+"\ ['darkred', 'DarkOrichid3'],
+"\ ['red', 'firebrick3'],
+"\ ]
 "let g:rbpt_max = 16
 "let g:rbpt_loadcmd_toggle = 0
 "au VimEnter * RainbowParenthesesToggle
