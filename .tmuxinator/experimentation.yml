@@ -21,3 +21,6 @@ root: ~/
 windows:
   - _: cd
   - OpenCV_CMake: cd ~/gigo/cmake.vim.debug && vim
+  - Haskell:
+      - cd ~/gigo/haskell
+      - cd ~/gigo/haskell && ghci
