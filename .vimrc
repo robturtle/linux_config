@@ -123,12 +123,14 @@ set nobackup
 set nowb
 set noswapfile
 
-" Set filetype for .zsh/rc/*.rc
-au BufRead,BufNewFile */.zsh/rc/*.rc setf zsh
-au BufRead,BufNewFile *.h++ setf cpp
-au BufRead,BufNewFile *.c++ setf cpp
-" highlight for .xinitrc
-au BufRead,BufNewFile .xinitrc setf sh
+augroup set_filetype
+    " Set filetype for .zsh/rc/*.rc
+    au BufRead,BufNewFile */.zsh/rc/*.rc setf zsh
+    au BufRead,BufNewFile *.h++ setf cpp
+    au BufRead,BufNewFile *.c++ setf cpp
+    " highlight for .xinitrc
+    au BufRead,BufNewFile .xinitrc setf sh
+augroup END
 
 " Enable filetype plugins
 filetype plugin indent on
@@ -582,8 +584,10 @@ Bundle 'php.vim--Garvin'
 Bundle 'eagletmt/ghcmod-vim'
 Bundle 'eagletmt/neco-ghc'
 " enable auto-completion for Haskell using YCM
-au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
-au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
+augroup hs_settings
+    au BufRead,BufNewFile *.hs setlocal omnifunc=necoghc#omnifunc
+    au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
+augroup END
 Bundle 'greyblake/vim-preview'
 
 " Html writer
