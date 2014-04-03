@@ -479,7 +479,15 @@ nnoremap <Leader>vs :VimuxInterruptRunner<CR>
 " Zoom the tmux runner page
 nnoremap <Leader>vz :VimuxZoomRunner<CR>
 " Let tmux run execute the file according to filetype
-nnoremap <leader>vr :call VimuxRunCommand(b:runprg)<CR>
+"nnoremap <leader>vr :call VimuxRunCommand(b:runprg)<CR>
+nnoremap <leader>vr :call TryRunFile()<CR>
+func! TryRunFile()
+    if exists('b:runprg')
+        call VimuxRunCommand(b:runprg)
+    else
+        echo "TryRunFile: b:runprg not set!"
+    endif
+endfunc
 " TODO set runprg and let <leader>vr use runprg
 
 """"""""""""""""""""""""""
