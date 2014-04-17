@@ -24,8 +24,8 @@ windows:
   - Haskell:
       layout: even-horizontal
       panes:
-        - cd ~/gigo/haskell
-        - cd ~/gigo/haskell && ghci
+        - cd ~/git/Haskell
+        - cd ~/git/Haskell && ghci
   - Python:
       layout: even-horizontal
       panes:
