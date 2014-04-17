@@ -58,6 +58,6 @@ function topcmds {
 function gitnextdirty {
     update_repo_status.sh
     d=`tag -f Dirty | head -n 1`
-    test -z "$d" && exit 1 || cd "$d"
+    test -z "$d" && echo "No more dirty git repo!" || cd "$d"
     git status -s
 }
