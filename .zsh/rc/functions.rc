@@ -53,3 +53,11 @@ function scantext {
 function topcmds {
     history 1 | awk '{a[$2]++}END{for (i in a){print a[i] " " i}}' | sort -rn | head
 }
+
+# Change directory into next dirty git repository
+function gitnextdirty {
+    update_repo_status.sh
+    d=`tag -f Dirty | head -n 1`
+    test -z "$d" && exit 1 || cd "$d"
+    git status -s
+}
