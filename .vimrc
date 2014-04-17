@@ -418,6 +418,9 @@ nnoremap gpu :Git push<cr>
 
 " YouCompleteMeeeeeee!!!!!!!!
 Bundle 'Valloric/YouCompleteMe'
+" Try minimize delay using YCM
+set nocursorline
+let loaded_matchparen = 1
 
 " YouCompleteMe
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
