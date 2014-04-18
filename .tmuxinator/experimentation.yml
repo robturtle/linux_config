@@ -31,3 +31,4 @@ windows:
       panes:
         - cd ~/git/Python
         - cd ~/git/Python && ipython
+  - MongoDB: cd ~/git/mongoDB/
