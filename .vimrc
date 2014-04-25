@@ -90,6 +90,10 @@ set tm=500
 set nu
 set relativenumber
 
+" Set fold method and don't fold it on default
+set fdm=syntax
+set foldlevel=99
+
 """""""""""""""""""""""""""""""""""
 " => Colors and Fonts
 """""""""""""""""""""""""""""""""""
@@ -184,6 +188,9 @@ nnoremap <leader>ba :1,1000 bd!<cr>
 
 " Switch CWD to the directory of the open buffer
 nnoremap <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+" Useful for editting C source file
+inoremap <leader>o <c-o>O
 
 
 " Specify the behavior when switching between buffers
@@ -415,6 +422,8 @@ Bundle 'tpope/vim-fugitive'
 nnoremap gs :Gstatus<cr>
 nnoremap gl :Gllog<cr>
 nnoremap gpu :Git push<cr>
+" Show diff on current file
+Bundle 'airblade/vim-gitgutter'
 
 " YouCompleteMeeeeeee!!!!!!!!
 Bundle 'Valloric/YouCompleteMe'
@@ -493,7 +502,53 @@ func! TryRunFile()
         echo "TryRunFile: b:runprg not set!"
     endif
 endfunc
-" TODO set runprg and let <leader>vr use runprg
+
+
+" Quick test for ACM like problems
+nnoremap <leader>vt :call TestACM()<CR>
+func! TestACM()
+python << EOF
+import vim
+from itertools import izip
+from subprocess import Popen, PIPE, STDOUT
+from os.path import exists
+
+exc = vim.eval("expand('%:p:r').'.elf'")
+if not exists(exc):
+    vim.command("echo('Targe not found! Compile your file first.')")
+else:
+    infname = vim.eval("expand('%:p:r').'.in'")
+    outfname = vim.eval("expand('%:p:r').'.out'")
+
+    for input_, output_ in izip(open(infname), open(outfname)):
+
+        p = Popen([exc], stdout=PIPE, stdin=PIPE, stderr=STDOUT)
+        out = p.communicate(input=input_)[0]
+
+        if out != output_:
+            msg="Test failed! Input: {} Expect: {} Actually: {}".format(input_, output_, out)
+            vim.command("echom('%s')" % msg)
+        else:
+            msg="Pass"
+            vim.command("echo('%s')" % msg)
+EOF
+endfunc
+
+" Quick open the test cases
+nnoremap <leader>vc :call OpenTestFile()<CR>
+func! OpenTestFile()
+    if &ft == "c" || &ft == "cpp"
+        vs
+        sp
+        exec ":e ".expand("%:p:r").".in"
+        wincmd j
+        exec ":e ".expand("%:p:r").".out"
+    elseif &ft == "scala"
+        let l:d = substitute(expand("%:p"), "main", "test", "")
+        let l:d = substitute(d, ".scala$", "Suite.scala", "")
+        exec ":vs " . l:d
+    endif
+endfunc
 
 """"""""""""""""""""""""""
 " Sniiiippets!!!
@@ -592,6 +647,14 @@ augroup hs_settings
     au BufRead,BufNewFile *.hs let g:necoghc_enable_detailed_browse = 1
 augroup END
 Bundle 'greyblake/vim-preview'
+
+Bundle 'derekwyatt/vim-scala'
+" syntax for *.sc
+au BufRead,BufNewFile *.sc setf scala
+" Configuration of Eclim
+let g:EclimScalaValidate = 1
+" YCM support
+let g:EclimCompletionMethod = 'omnifunc'
 
 " Html writer
 """"""""""""""""""""""""""
