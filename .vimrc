@@ -652,9 +652,13 @@ Bundle 'derekwyatt/vim-scala'
 " syntax for *.sc
 au BufRead,BufNewFile *.sc setf scala
 " Configuration of Eclim
-let g:EclimScalaValidate = 1
+
+" It's slow so let's do it manually
+let g:EclimScalaValidate = 0
 " YCM support
 let g:EclimCompletionMethod = 'omnifunc'
+" todo support
+let g:EclimTodoSearchExtensions = ['java', 'py', 'php', 'jsp', 'xml', 'html', 'scala']
 
 " Html writer
 """"""""""""""""""""""""""
