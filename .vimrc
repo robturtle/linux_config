@@ -497,7 +497,11 @@ nnoremap <Leader>vz :VimuxZoomRunner<CR>
 nnoremap <leader>vr :call TryRunFile()<CR>
 func! TryRunFile()
     if exists('b:runprg')
-        call VimuxRunCommand(b:runprg)
+        if b:runprg =~ "^:"
+            exec b:runprg
+        else
+            call VimuxRunCommand(b:runprg)
+        endif
     else
         echo "TryRunFile: b:runprg not set!"
     endif
