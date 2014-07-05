@@ -443,6 +443,12 @@ let g:syntastic_always_populate_loc_list = 1
 Bundle 'a.vim'
 " Commenter
 Bundle 'scrooloose/nerdcommenter'
+Bundle 'DoxygenToolkit.vim'
+let g:load_doxygen_syntax=1
+let g:DoxygenToolkit_authorName="Yang Leo"
+"" auto save/restore folding of file
+au BufWinLeave ?* mkview
+au BufWinEnter ?* silent loadview
 
 " Try to debug it
 Bundle 'robturtle/cmake.vim' 
@@ -560,6 +566,7 @@ endfunc
 Bundle 'UltiSnips'
 " UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = '<c-j>'
+let g:ultisnips_java_brace_style = "nl"
 " My own snippets
 Bundle 'robturtle/USsnippets'
 
