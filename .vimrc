@@ -446,6 +446,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'DoxygenToolkit.vim'
 let g:load_doxygen_syntax=1
 let g:DoxygenToolkit_authorName="Yang Leo"
+nnoremap <leader>do :Dox
+
 "" auto save/restore folding of file
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
@@ -670,6 +672,9 @@ let g:EclimScalaValidate = 0
 let g:EclimCompletionMethod = 'omnifunc'
 " todo support
 let g:EclimTodoSearchExtensions = ['java', 'py', 'php', 'jsp', 'xml', 'html', 'scala']
+
+" Java convenience
+au Filetype java nnoremap <leader>im :JavaImport<cr>
 
 " Html writer
 """"""""""""""""""""""""""
