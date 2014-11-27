@@ -118,6 +118,13 @@ endif
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" Different background color over 80 chars
+"FIXME always RED in iTerm2. Probably related with an outter colorscheme
+highlight ColorColumn ctermbg=LightGreen guibg=#2c2d27
+" Because the bug above, only highlight column 80
+"let &colorcolumn="80,".join(range(120,999),",")
+let &colorcolumn="80"
+
 """""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""
