@@ -317,7 +317,7 @@ let g:myvimrc = "~/git/linux_config/.vimrc"
 " Entry to my .vimrc
 nnoremap <leader><leader>v :silent exe "tabedit ".g:myvimrc<cr>
 " Refresh settings
-nnoremap <leader><leader>s :exe "source ".g:myvimrc<cr>
+nnoremap <leader><leader>s :source $MYVIMRC<cr>
 
 " TODO wrap `tabedit` as func: if it's a empty buffer, open it directly
 "      then replace all `tabedit` cmd
