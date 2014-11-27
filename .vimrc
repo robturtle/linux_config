@@ -259,6 +259,9 @@ autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " Fast type CMakeLists.txt in cmdline
 cabbrev CM CMakeLists.txt
+" Personal info
+iabbrev @@ jeremyrobturtle@gmail.com
+iabbrev ccopy Copyright 2014 Yang LIU, all rights reserved.
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
