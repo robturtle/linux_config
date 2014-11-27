@@ -20,11 +20,6 @@ root: ~/
 
 windows:
   - _: cd
-  - Jekyll:
-      layout: even-horizontal
-      panes:
-        - tracejekyll.sh
-        - cd ~/git/robturtle.github.io
-  - Wiki: cd ~/git/robturtle.github.io && vim -p _data/wiki.yml _includes/charpter.html pages/Platform/osx/index.html
-  - GoAgent: python ~/repo/goagent-goagent-040478d/local/proxy.py
-  - mongod: mongod
+  #- GoAgent: python ~/repo/goagent-latest/local/proxy.py
+  #- mongod: mongod
+  - Eclimd: cd /Applications/eclipse/ && /Applications/eclipse/eclimd

@@ -1,6 +1,6 @@
 # ~/.tmuxinator/Experimentation.yml
 
-name: experimentation
+name: debug
 root: ~/
 
 # Optional tmux socket
@@ -20,15 +20,15 @@ root: ~/
 
 windows:
   - _: cd
-  - OpenCV_CMake: cd ~/gigo/cmake.vim.debug && vim
+  - OpenCV_CMake: cd ~/gigo/cmake.vim.debug
   - Haskell:
       layout: main-horizontal
       panes:
-        - cd ~/git/Haskell
+        - cd ~/git/Haskell && ghci
   - Python:
       layout: main-horizontal
       panes:
-        - cd ~/git/Python
+        - cd ~/git/Python && ipython
   - Algo_Princeton:
       layout: main-horizontal
       panes:
@@ -41,4 +41,3 @@ windows:
       layout: main-horizontal
       panes:
         - cd ~/git/DataStructure/TsinghuaCpp
-  - Play_With_githug: cd ~/gigo/git_hug && git status
