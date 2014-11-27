@@ -92,7 +92,7 @@ set relativenumber
 
 " Set fold method and don't fold it on default
 set fdm=syntax
-set foldlevel=99
+"set foldlevel=99
 
 """""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -446,9 +446,10 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'DoxygenToolkit.vim'
 let g:load_doxygen_syntax=1
 let g:DoxygenToolkit_authorName="Yang Leo"
-nnoremap <leader>do :Dox
+nnoremap <leader>do :Dox<cr>
 
 "" auto save/restore folding of file
+" FIXME not fixed the lopen
 au BufWinLeave ?* mkview
 au BufWinEnter ?* silent loadview
 
