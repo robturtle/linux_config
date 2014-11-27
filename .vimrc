@@ -222,6 +222,18 @@ autocmd BufReadPost *
 " Remember info about open buffers on close
 set viminfo^=%
 
+" Space to toggle folding
+nnoremap <space> za
+
+" Quicker move head/end of line
+nnoremap H 0
+nnoremap L $
+
+" Quicker ESC
+inoremap jk <esc>
+" Disable current ESC key to learn new habit
+inoremap <esc> <nop>
+
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
