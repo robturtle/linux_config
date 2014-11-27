@@ -4,3 +4,4 @@ Templates/ycm.*.py
 .local/
 bin/learn
 bin/review
+bin/findbugs
