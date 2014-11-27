@@ -141,10 +141,16 @@ augroup set_filetype
     au BufRead,BufNewFile *.c++ setf cpp
     " highlight for .xinitrc
     au BufRead,BufNewFile .xinitrc setf sh
+    au BufRead,BufNewFile *.mm setf xml
 augroup END
 
 " Enable filetype plugins
 filetype plugin indent on
+
+" Auto format markup languages
+au BufWritePre,BufRead *.html,*.htm,*.xml,*.mm :normal mzgg=G`z
+" No wrap for markup languages
+au BufRead,BufNewFile *.html,*.htm,*.xml,*.mm :setlocal nowrap
 
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
