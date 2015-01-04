@@ -227,7 +227,9 @@ nnoremap <space> za
 
 " Quicker move head/end of line
 nnoremap H 0
+vnoremap H 0
 nnoremap L $
+vnoremap L $
 
 " Quicker ESC
 inoremap jk <esc>
@@ -262,6 +264,9 @@ cabbrev CM CMakeLists.txt
 " Personal info
 iabbrev @@ jeremyrobturtle@gmail.com
 iabbrev ccopy Copyright 2014 Yang LIU, all rights reserved.
+
+" Copy all contents
+nnoremap <leader>cp mzggyG`z
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -704,6 +709,9 @@ let g:EclimTodoSearchExtensions = ['java', 'py', 'php', 'jsp', 'xml', 'html', 's
 
 " Java convenience
 au Filetype java nnoremap <leader>im :JavaImport<cr>
+
+" HTML5
+Bundle 'othree/html5.vim'
 
 " Html writer
 """"""""""""""""""""""""""
