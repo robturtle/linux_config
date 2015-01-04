@@ -5,3 +5,4 @@ Templates/ycm.*.py
 bin/learn
 bin/review
 bin/findbugs
+bin/cow
