@@ -35,7 +35,7 @@ for file in $HOME/.zsh/rc/*.rc; do
 done
 
 # Attach to tmux
-tmux has-session -t log
-if [ $? != 0 ]; then # Do not have session experimentation
-    tmuxinator start log
-fi
+#tmux has-session -t log
+#if [ $? != 0 ]; then # Do not have session experimentation
+#    tmuxinator start log
+#fi

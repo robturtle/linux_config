@@ -6,7 +6,7 @@
 # Brief: Make symlinks to your $HOME.
 for i in ".zsh" ".vimrc" ".zshrc" "bin" "Templates" ".Xdefaults" ".Xmodmap" ".gitconfig" \
          ".xbindkeysrc" ".xinitrc" ".xprofile"; do
-    if [ -f "$i" ] || [ -d "$i" ]; then
+    if [ -f "${HOME}/$i" ] || [ -d "${HOME}/$i" ]; then
         echo "$i already existed. Not installed..."
     else
         echo "Install $i into ${HOME}"
