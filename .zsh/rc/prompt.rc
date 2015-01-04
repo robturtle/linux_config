@@ -22,7 +22,11 @@ set_prompt() {
     }
     myjobs=${(j:,:)myjobs}
     ((MAXMID=$COLUMNS / 2)) # truncate to this value
-    RPS1="$RPSL$C_L_GREEN%$MAXMID;$BRANCH$RPSR"
+    if [ -d ".git" ]; then
+        RPS1="$RPSL$C_L_GREEN%$MAXMID;$BRANCH$RPSR"
+    else
+        RPS1="$RPSL$C_L_GREEN%$MAXMID;$RPSR"
+    fi
 
     # Let PS1 show the pushd directory stack
     dir_stack=$(dirs)
