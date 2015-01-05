@@ -20,7 +20,6 @@ root: ~/
 
 windows:
   - _: cd
-  - OpenCV_CMake: cd ~/gigo/cmake.vim.debug
   - Haskell:
       layout: main-horizontal
       panes:
@@ -29,15 +28,7 @@ windows:
       layout: main-horizontal
       panes:
         - cd ~/git/Python && ipython
-  - Algo_Princeton:
+  - R:
       layout: main-horizontal
       panes:
-        - cd ~/git/Algo/PrincetonJava
-  - Algo_Tsinghua:
-      layout: main-horizontal
-      panes:
-        - cd ~/git/Algo/TsinghuaCpp
-  - DSA_Tsinghua:
-      layout: main-horizontal
-      panes:
-        - cd ~/git/DataStructure/TsinghuaCpp
+        - cd ~/git/datasciencecoursera/R && R

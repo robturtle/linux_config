@@ -20,6 +20,5 @@ root: ~/
 
 windows:
   - _: cd
-  #- GoAgent: python ~/repo/goagent-latest/local/proxy.py
-  #- mongod: mongod
+  - COW: cow
   - Eclimd: cd /Applications/eclipse/ && /Applications/eclipse/eclimd

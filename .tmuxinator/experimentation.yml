@@ -29,16 +29,8 @@ windows:
       layout: main-horizontal
       panes:
         - cd ~/git/Python
-  - Algo_Princeton:
-      layout: main-horizontal
-      panes:
-        - cd ~/git/Algo/PrincetonJava
-  - Algo_Tsinghua:
-      layout: main-horizontal
-      panes:
-        - cd ~/git/Algo/TsinghuaCpp
-  - DSA_Tsinghua:
-      layout: main-horizontal
-      panes:
-        - cd ~/git/DataStructure/TsinghuaCpp
   - Play_With_githug: cd ~/gigo/git_hug && git status
+  - R:
+      layout: main-horizontal
+      panes:
+        - cd ~/git/datasciencecoursera/R && R
