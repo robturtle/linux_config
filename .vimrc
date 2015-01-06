@@ -142,6 +142,7 @@ augroup set_filetype
     " highlight for .xinitrc
     au BufRead,BufNewFile .xinitrc setf sh
     au BufRead,BufNewFile *.mm setf xml
+    au BufRead,BufNewFile *.sc setf scala
 augroup END
 
 " Enable filetype plugins
@@ -696,8 +697,7 @@ augroup END
 Bundle 'greyblake/vim-preview'
 
 Bundle 'derekwyatt/vim-scala'
-" syntax for *.sc
-au BufRead,BufNewFile *.sc setf scala
+
 " Configuration of Eclim
 
 " It's slow so let's do it manually
