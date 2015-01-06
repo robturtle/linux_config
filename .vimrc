@@ -148,10 +148,12 @@ augroup END
 " Enable filetype plugins
 filetype plugin indent on
 
-" Auto format markup languages
-au BufWritePre,BufRead *.html,*.htm,*.xml,*.mm :normal mzgg=G`z
-" No wrap for markup languages
-au BufRead,BufNewFile *.html,*.htm,*.xml,*.mm :setlocal nowrap
+augroup set_html
+    " Auto format markup languages
+    au BufWritePre,BufRead *.html,*.htm,*.xml,*.mm :normal mzgg=G`z
+    " No wrap for markup languages
+    au BufRead,BufNewFile *.html,*.htm,*.xml,*.mm :setlocal nowrap
+augroup END
 
 """""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -484,8 +486,10 @@ nnoremap <leader>do :Dox<cr>
 
 "" auto save/restore folding of file
 " FIXME not fixed the lopen
-au BufWinLeave ?* mkview
-au BufWinEnter ?* silent loadview
+augroup restore_folding
+    au BufWinLeave ?* mkview
+    au BufWinEnter ?* silent loadview
+augroup END
 
 " Try to debug it
 Bundle 'robturtle/cmake.vim' 
@@ -708,7 +712,9 @@ let g:EclimCompletionMethod = 'omnifunc'
 let g:EclimTodoSearchExtensions = ['java', 'py', 'php', 'jsp', 'xml', 'html', 'scala']
 
 " Java convenience
-au Filetype java nnoremap <leader>im :JavaImport<cr>
+augroup set_java
+    au Filetype java nnoremap <leader>im :JavaImport<cr>
+augroup END
 
 " HTML5
 Bundle 'othree/html5.vim'
