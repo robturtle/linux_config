@@ -24,13 +24,16 @@ windows:
   - Haskell:
       layout: main-horizontal
       panes:
+        - cd ~/git/Haskell && ghci
         - cd ~/git/Haskell
   - Python:
       layout: main-horizontal
       panes:
         - cd ~/git/Python
+        - cd ~/git/Python && ipython
   - Play_With_githug: cd ~/gigo/git_hug && git status
   - R:
       layout: main-horizontal
       panes:
         - cd ~/git/datasciencecoursera/R && R
+        - cd ~/git/datasciencecoursera/R
