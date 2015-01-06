@@ -271,6 +271,14 @@ iabbrev ccopy Copyright 2014 Yang LIU, all rights reserved.
 " Copy all contents
 nnoremap <leader>cp mzggyG`z
 
+" New operator mappings
+" XXX not practice much
+" in parenthesis
+onoremap p i(
+" to the line contains return
+onoremap b /return<cr>
+onoremap in( :<c-u>normal! f)vi(<cr>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
