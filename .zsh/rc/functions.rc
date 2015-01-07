@@ -33,7 +33,7 @@ function switch_proxy {
     fi
 }
 alias p="switch_proxy"
-export http_proxy=$proxy_COW
+#export http_proxy=$proxy_COW
 
 # Scan all the text contents under the directory
 function scantext {
