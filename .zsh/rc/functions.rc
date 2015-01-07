@@ -60,3 +60,17 @@ function gitnextdirty {
     test -z "$d" && echo "No more dirty git repo!" || cd "$d"
     git status -s
 }
+
+# ghc-pkg-reset
+# Removes all installed GHC/cabal packages, but not binaries, docs, etc.
+# Use this to get out of dependency hell and start over, at the cost of some rebuilding time.
+function ghc-pkg-reset() {
+    echo -n 'erasing all your user ghc and cabal packages - are you sure (y/n) ? ' 
+    read ans
+    test x$ans == xy && ( \
+        echo 'erasing directories under ~/.ghc'; rm -rf `find ~/.ghc -maxdepth 1 -type d`; \
+        echo 'erasing ~/.cabal/lib'; rm -rf ~/.cabal/lib; \
+        # echo 'erasing ~/.cabal/packages'; rm -rf ~/.cabal/packages; \
+        # echo 'erasing ~/.cabal/share'; rm -rf ~/.cabal/share; \
+        )
+}
