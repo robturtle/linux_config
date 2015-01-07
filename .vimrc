@@ -190,8 +190,6 @@ nnoremap <C-l> <C-W>l
 " Move around split windows
 nnoremap th <C-Pageup>
 nnoremap tl <C-Pagedown>
-" Opens a new tab
-nnoremap <c-t> :tabnew<cr>
 " Open a file under the same directory"
 nnoremap <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Move current tab to right position
