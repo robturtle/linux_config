@@ -31,4 +31,4 @@ windows:
       panes:
         - cd ~/git/linux_config && vim .tmux.conf
         - cd ~/git/linux_config/.tmuxinator && vim -p *.yml
-  - cmake-vim: cd ~/git/cmake.vim && vim -p plugin/cmake.vim autoload/cmake/*.vim
+  - Emacs: cd && emacs .emacs
