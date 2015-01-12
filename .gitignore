@@ -6,3 +6,7 @@ bin/learn
 bin/review
 bin/findbugs
 bin/cow
+/.zsh/_cabal
+/.zsh/_ghc
+/.zsh/_hugs
+/bin/gpg

@@ -226,16 +226,16 @@ set viminfo^=%
 " Space to toggle folding
 nnoremap <space> za
 
-" Quicker move head/end of line
-nnoremap H 0
-vnoremap H 0
-nnoremap L $
-vnoremap L $
+"" Quicker move head/end of line
+"nnoremap H 0
+"vnoremap H 0
+"nnoremap L $
+"vnoremap L $
 
 " Quicker ESC
-inoremap jk <esc>
-" Disable current ESC key to learn new habit
-inoremap <esc> <nop>
+"inoremap jk <esc>
+"" Disable current ESC key to learn new habit
+"inoremap <esc> <nop>
 
 """"""""""""""""""""""""""""""
 " => Status line
