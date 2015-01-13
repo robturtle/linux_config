@@ -53,7 +53,7 @@ precmd()  {
 
 #PS1=$'$C_L_BLUE%(1j.[$myjobs]% $C_OFF .$C_OFF)%m.%B%n%b$C_OFF$C_L_RED%#$C_OFF'
 PROMPT=$'
-%{%}%B[ %b%{%}%{%}$C_L_YELLOW%n%{%}$C_OFF@$C_L_MAGENTA%{%}%{%}%m%{%}$C_OFF %B]%b%{%} - %b%{%}%B[ %b%{%}$C_L_GREEN%~%{%}$C_OFF%B ]%b%{%} - %{%}%B[ %b%{%}%D{%a %d, %H:%M}%b%{%}%B%{%}%B ]%b%{%}
+%{%}%B[ %b%{%}%{%}$C_L_YELLOW%n%{%}$C_OFF@$C_L_MAGENTA%{%}%{%}%m%{%}$C_OFF %B]%b%{%} - %b%{%}%B[ %b%{%}$C_L_GREEN%~%{%}$C_OFF%B ]%b%{%}
 $C_L_BLUE%(1j.[$myjobs]% $C_OFF .$C_OFF)$mystack%{%}%B%%> %{%}%b'
 # End of colored prompt
 
