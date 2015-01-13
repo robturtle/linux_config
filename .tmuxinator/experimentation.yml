@@ -19,8 +19,7 @@ root: ~/
 # tmux_command: byobu
 
 windows:
-  - _: cd
-  - OpenCV_CMake: cd ~/gigo/cmake.vim.debug && vim
+  - _: emacs
   - Haskell:
       layout: main-horizontal
       panes:
