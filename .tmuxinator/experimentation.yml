@@ -1,5 +1,3 @@
-# ~/.tmuxinator/Experimentation.yml
-
 name: experimentation
 root: ~/
 

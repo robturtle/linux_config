@@ -1,5 +1,3 @@
-# ~/.tmuxinator/Log.yml
-
 name: log
 root: ~/
 
