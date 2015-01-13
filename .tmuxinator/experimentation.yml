@@ -21,18 +21,18 @@ root: ~/
 windows:
   - _: emacs
   - Haskell:
-      layout: main-horizontal
+      layout: main-vertical
       panes:
-        - cd ~/git/Haskell && ghci
         - cd ~/git/Haskell
+        - cd ~/git/Haskell && ghci
   - Python:
-      layout: main-horizontal
+      layout: main-vertical
       panes:
         - cd ~/git/Python
         - cd ~/git/Python && ipython
   - Play_With_githug: cd ~/gigo/git_hug && githug reset
   - R:
-      layout: main-horizontal
+      layout: main-vertical
       panes:
-        - cd ~/git/datasciencecoursera/R && R
         - cd ~/git/datasciencecoursera/R
+        - cd ~/git/datasciencecoursera/R && R
