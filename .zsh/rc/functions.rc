@@ -7,7 +7,7 @@
 # the last visited one after ranger quits.
 # To undo the effect of this function, you can type "cd -" to return to the
 # original directory. Ranger facility -- Auto cd to last dir
-function ranger-cd {
+function ranger_cd() {
     tempfile='/tmp/chosendir'
     /usr/bin/env ranger --choosedir="$tempfile" "${@:-$(pwd)}"
     test -f "$tempfile" &&
@@ -16,7 +16,7 @@ function ranger-cd {
     fi
     rm -f -- "$tempfile"
 }
-alias d="ranger-cd"
+bindkey -s '^E' 'ranger_cd\n'
 
 # Set HTTP Proxy
 # I use COW in my local machine as proxy
