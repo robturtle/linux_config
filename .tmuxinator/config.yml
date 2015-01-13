@@ -20,7 +20,7 @@ root: ~/
 
 windows:
   - _: cd
-  - Zshrc: cd ~/git/linux_config && vim -p .zshrc .zsh/rc/*.rc
+  - Zshrc: cd ~/git/linux_config && emacs --no-desktop .zshrc .zsh/rc/*.rc
   - Vimrc:
       layout: even-horizontal
       panes:
@@ -29,6 +29,5 @@ windows:
   - Tmux:
       layout: even-horizontal
       panes:
-        - cd ~/git/linux_config && vim .tmux.conf
-        - cd ~/git/linux_config/.tmuxinator && vim -p *.yml
+        - cd ~/git/linux_config && emacs --no-desktop .tmux.conf .tmuxinator/*.yml
   - Emacs: cd && emacs .emacs
