@@ -20,5 +20,4 @@ root: ~/
 
 windows:
   - _: cd
-  - COW: cow
   - Eclimd: cd /Applications/eclipse/ && /Applications/eclipse/eclimd
