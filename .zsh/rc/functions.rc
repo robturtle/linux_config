@@ -16,7 +16,7 @@ function ranger_cd() {
     fi
     rm -f -- "$tempfile"
 }
-bindkey -s '^E' 'ranger_cd\n'
+bindkey -s '^S' 'ranger_cd\n'
 
 # Set HTTP Proxy
 # I use COW in my local machine as proxy
