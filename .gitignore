@@ -10,3 +10,4 @@ bin/cow
 /.zsh/_ghc
 /.zsh/_hugs
 /bin/gpg
+/bin/ycmd/

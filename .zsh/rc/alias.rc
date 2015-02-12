@@ -29,7 +29,7 @@ alias diff="colordiff"
 
 # l10n support
 alias zip="zip -r"
-alias unzip="unzip -O CP936"
+# alias unzip="unzip -O CP936"
 
 # Compile commands for YouCompleteMe
 alias cmake="cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=ON"
