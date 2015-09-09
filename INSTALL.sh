@@ -4,8 +4,8 @@
 # License:     LGPL v2.0+
 # Contact Me:  JeremyRobturtle@gmail.com
 # Brief: Make symlinks to your $HOME.
-for i in ".zsh" ".vimrc" ".zshrc" "bin" "Templates" ".Xdefaults" ".Xmodmap" ".gitconfig" \
-    ".xbindkeysrc" ".xinitrc" ".xprofile" ".percol.d" ".Rprofile"; do
+for i in ".zsh" ".vimrc" ".zshrc" "bin" "Templates" ".gitconfig" \
+    ".percol.d" ".Rprofile"; do
     if [ -f "${HOME}/$i" ] || [ -d "${HOME}/$i" ]; then
         echo "$i already existed. Not installed..."
     else
