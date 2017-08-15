@@ -10,17 +10,18 @@ set autoread
 let mapleader = " "
 let g:mapleader = " "
 
-set clipboard^=unnamed
+" NOTE: make sure `vim --version | grep clipboard` returns you '+clipboard'
+set clipboard=unnamed
 
 " global keys
-"" quit
-nnoremap <leader>qq :qa<cr>
+"" quit all
+nnoremap <leader>qa :qa<cr>
 
 "" files <f>
 """" save
 nnoremap <leader>fs :w!<cr>
 """" close
-nnoremap <leader>fq :q<cr>
+nnoremap <leader>qq :q<cr>
 """" ranger finder
 nnoremap <leader>ff :call RangerChooser()<CR>
 """" fast open vimrc
@@ -84,6 +85,13 @@ set relativenumber
 " folding
 set fdm=syntax
 set foldlevel=99
+
+" status line
+" NOTE: `pip install powerline-status` first
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+set laststatus=2 " always show status line
 
 """"""""""""""""""""
 " => Files, backup and undo
@@ -209,7 +217,7 @@ Bundle 'airblade/vim-gitgutter'
 "Bundle 'kien/ctrlp.vim'
 
 """ status line
-Bundle 'Lokaltog/powerline'
+"Bundle 'Lokaltog/powerline'
 
 """" easy move around
 "Bundle 'Lokaltog/vim-easymotion'
@@ -249,5 +257,5 @@ endtry
 hi ColorColumn ctermbg=DarkGrey guibg=#2c2d27
 hi Search ctermfg=black ctermbg=LightGreen
 hi IncSearch ctermfg=black ctermbg=LightGreen
+hi MatchParen ctermbg=LightGreen
 let &colorcolumn="81"
-
